@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+message ProduceRequest {
+  sint32 RequiredAcks = 1;
+  uint32 Timeout = 2;
+  string TopicName = 3;
+  uint32 Partition = 4;
+  uint32 MessageSetSize = 5;
+  bytes MessageSet = 6;
+}
+
+message ProduceResponse {
+  string TopicName = 1;
+  uint32 Partition = 2;
+  uint32 ErrorCode = 3;
+  uint64 Offset = 4;
+}
+
+message Request {
+  int32 ApiKey = 1;
+  int32 ApiVersion = 2;
+  int32 CorrelationId = 3;
+  string ClientId = 4;
+}
+
+message Response {
+  int32 CorrelationId = 3;
+}
+
+service ProduceAPI {
+  rpc Produce (ProduceRequest) returns (ProduceResponse);
+}
+
