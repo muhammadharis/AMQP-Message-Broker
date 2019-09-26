@@ -14,15 +14,10 @@ type BrokerImpl struct {}
 func (*BrokerImpl) Produce(ctx context.Context, request *broker.ProduceRequest) (*broker.ProduceResponse, error) {
 	routingKey := request.RoutingKey
 	messageSet := request.MessageSet
+	client := createRedisClient("localhost:6379", "", 0) //No password, default DB
+	dirtyPartition := false // Is set when the partition number is changed
 
-	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
-
-	dirtyPartition := false
-
+	// The routing key will hold the partition number, actual data is stored in routingkey+partitionNumber
 	partitionNumber, err := client.Get(routingKey).Int64()
 	if err != nil {
 		panic(err)
@@ -52,4 +47,13 @@ func (*BrokerImpl) Produce(ctx context.Context, request *broker.ProduceRequest) 
 	}
 	resp := &broker.ProduceResponse{}
 	return resp, nil
+}
+
+func createRedisClient(addr string, password string, db int) (*redis.Client){
+	client := redis.NewClient(&redis.Options{
+		Addr:     addr,
+		Password: password,
+		DB:       db,
+	})
+	return client
 }
