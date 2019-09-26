@@ -2,6 +2,7 @@ package broker
 
 import (
 	"context"
+	"strconv"
 	broker "github.com/muhammadharis/grpc/protos/broker"
 	redis "github.com/go-redis/redis"
 )
@@ -17,10 +18,16 @@ func (*BrokerImpl) Produce(ctx context.Context, request *broker.ProduceRequest) 
 	client := createRedisClient("localhost:6379", "", 0) //No password, default DB
 	dirtyPartition := false // Is set when the partition number is changed
 
-	// The routing key will hold the partition number, actual data is stored in routingkey+partitionNumber
-	partitionNumber, err := client.Get(routingKey).Int64()
-	if err != nil {
-		panic(err)
+	// The Redis routing key will hold the partition number, actual data is stored in routingkey+partitionNumber
+	var partitionNumber int64
+	if partitionUnparsed := client.Get(routingKey); partitionUnparsed.Val() == "" {
+		partitionNumber = 0
+	} else {
+		var err error
+		partitionNumber, err = partitionUnparsed.Int64()
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	sizeOfCurrentPartition := client.LLen(routingKey+string(partitionNumber)).Val()
@@ -32,7 +39,7 @@ func (*BrokerImpl) Produce(ctx context.Context, request *broker.ProduceRequest) 
 	}
 
 	for msg := range messageSet {
-		client.RPush(routingKey+string(partitionNumber), msg) //We store messages in routingKey+partitionNumber
+		client.RPush(routingKey+strconv.FormatInt(partitionNumber, 10), msg) //We store messages in routingKey+partitionNumber
 		sizeOfCurrentPartition ++
 		if sizeOfCurrentPartition >= partitionLimit { //Increment partition # if partition reaches max capacity while adding elements
 			dirtyPartition = true

@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
-	//"net"
+	//"fmt"
+	"net"
 	//"time"
 
 	broker "github.com/muhammadharis/grpc/protos/broker"
 	brokerImpl "github.com/muhammadharis/grpc/services/broker"
-	redis "github.com/go-redis/redis"
+	//redis "github.com/go-redis/redis"
 
 	"google.golang.org/grpc"
 )
@@ -15,8 +15,12 @@ import (
 func main() {
 	server := grpc.NewServer()
 	broker.RegisterProduceAPIServer(server, &brokerImpl.BrokerImpl{})
-
-	client := redis.NewClient(&redis.Options{
+	listener, err := net.Listen("tcp", ":8080")
+	if err != nil {
+		panic(err)
+	}
+	server.Serve(listener)
+	/*client := redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
@@ -31,5 +35,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(val+1)
+	fmt.Println(val+1)*/
 }

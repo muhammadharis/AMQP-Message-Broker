@@ -1,2 +1,4 @@
 # Compile protos
-`protoc --go_out=paths=source_relative:. inputs/x.proto`
+`./updateProtos.sh`
+
+Following the guidelines of https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol
