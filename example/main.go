@@ -1,23 +1,24 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
+	"strings"
 	"os"
-
-	cli "github.com/urfave/cli"
 )
 
-var app = cli.NewApp()
-
-func info() {
-	app.Name = "Simple pizza CLI"
-	app.Usage = "An example CLI for ordering pizza's"
-	app.Author = "muhammadharis" 
-}
-
 func main() {
-	info()
-	err := app.Run(os.Args)
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter routing key: ")
+	routingKey, err := reader.ReadString('\n')
 	if err != nil {
 		panic(err)
 	}
+	routingKey = strings.TrimSuffix(routingKey, "\n")
+	
+	produceResponse, err := Produce(routingKey)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(produceResponse)
 }

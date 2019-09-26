@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"context"
 
 	broker "github.com/muhammadharis/grpc/protos/broker"
@@ -18,10 +17,10 @@ func createGrpcClientConnection(target string) (*grpc.ClientConn, error) {
 }
 
 // Produce allows a producer to produce a message to the broker
-func Produce(routingKey string) {
+func Produce(routingKey string) (*broker.ProduceResponse, error) {
 	conn, err := createGrpcClientConnection("localhost:8080")
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	client := broker.NewProduceAPIClient(conn)
 
@@ -32,8 +31,8 @@ func Produce(routingKey string) {
 
 	produceResponse, err := client.Produce(context.Background(), produceRequest)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	fmt.Println(produceResponse)
+	return produceResponse, nil
 }
