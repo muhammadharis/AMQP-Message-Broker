@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+message ProduceRequest {
+  string RoutingKey = 1;
+  uint32 MessageSetSize = 2;
+  bytes MessageSet = 3;
+}
+
+message ProduceResponse {
+  uint32 ErrorCode = 1;
+}
+
+service ProduceAPI {
+  rpc Produce (ProduceRequest) returns (ProduceResponse);
+}
+
