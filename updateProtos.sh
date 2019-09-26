@@ -1,7 +1,7 @@
 #!/bin/bash
 
-for f in ./api/*.proto
+for f in $(find ./protos -name '*.proto');
 do
 	echo "Processing $f"
-    protoc --go_out=paths=source_relative:. $f
+    protoc --go_out=plugins=grpc:. $f
 done
