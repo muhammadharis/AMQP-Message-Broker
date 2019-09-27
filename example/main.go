@@ -1,16 +1,17 @@
 package main
 
 import (
-	"bufio"
+	//"bufio"
 	"fmt"
 	"strings"
-	"os"
+	//"os"
 )
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
+	//reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter routing key: ")
-	routingKey, err := reader.ReadString('\n')
+	//routingKey, err := reader.ReadString('\n')
+	routingKey, err := "abc", error(nil)
 	if err != nil {
 		panic(err)
 	}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message ConsumerRequest {
+    string Key = 1;
+}
+
+message ConsumerResponse {
+    string message = 1;
+}
+
+service ConsumerAPI {
+    rpc Subscribe (ConsumerRequest) returns (stream ConsumerResponse);
+}
