@@ -26,22 +26,7 @@ func (*BrokerImpl) Produce(ctx context.Context, request *broker.ProduceRequest) 
 		MaxLenApprox: partitionLimit,
 		ID: "*",
 		Values: map[string]interface{} {
-			"a" : 1,
-			"b" : 2,
-			"c" : 3,
-			"d" : 4,
-			"e" : 5,
-			"f" : 6,
-			"g" : 7,
-			"h" : 2,
-			"i" : 1,
-			"j" : 2,
-			"k" : 1,
-			"l" : 2,
-			"m" : 1,
-			"n" : 2,
-			"o" : 1,
-			"p" : 2,
+			"0": request.MessageSet,
 		},
 	}
 	cmd := client.XAdd(xAddArgument)

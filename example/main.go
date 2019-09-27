@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -19,17 +20,21 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		routingKey = strings.TrimSuffix(routingKey, "\n")
-		
-		produceResponse, err := Produce(routingKey)
-		if err != nil {
-			panic(err)
+		for i := 0; i<5; i++ {
+			routingKey = strings.TrimSuffix(routingKey, "\n")
+			message := "example message set"
+			_, err := Produce(routingKey, message+strconv.Itoa(i))
+			if err != nil {
+				panic(err)
+			}
 		}
-		fmt.Println(produceResponse)
+		
 	} else {
-		err = Subscribe(routingKey)
-		if err != nil {
-			panic(err)
+		for {
+			err = Subscribe(routingKey)
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
 }

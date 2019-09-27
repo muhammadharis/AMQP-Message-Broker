@@ -19,7 +19,7 @@ func Subscribe(key string) error {
 	consumerRequest := &consumer.ConsumerRequest{
 		Key: key,
 	}
-
+	
 	stream, err := client.Subscribe(context.Background(), consumerRequest)
 	if err != nil {
 		return err

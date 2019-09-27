@@ -7,7 +7,7 @@ import (
 )
 
 // Produce allows a producer to produce a message to the broker
-func Produce(routingKey string) (*broker.ProduceResponse, error) {
+func Produce(routingKey, message string) (*broker.ProduceResponse, error) {
 	conn, err := CreateGrpcClientConnection("localhost:8080")
 	if err != nil {
 		return nil, err
@@ -16,7 +16,7 @@ func Produce(routingKey string) (*broker.ProduceResponse, error) {
 
 	produceRequest := &broker.ProduceRequest{
 		RoutingKey: routingKey,
-		MessageSet: []byte("example message set"),
+		MessageSet: []byte(message),
 	}
 
 	produceResponse, err := client.Produce(context.Background(), produceRequest)
