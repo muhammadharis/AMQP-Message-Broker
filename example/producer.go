@@ -8,7 +8,7 @@ import (
 
 // Produce allows a producer to produce a message to the broker
 func Produce(routingKey string) (*broker.ProduceResponse, error) {
-	conn, err := createGrpcClientConnection("localhost:8080")
+	conn, err := CreateGrpcClientConnection("localhost:8080")
 	if err != nil {
 		return nil, err
 	}

@@ -10,17 +10,17 @@ import (
 
 // Subscribe allows a consumer to consume a message from the queue
 func Subscribe(key string) error {
-	conn, err := createGrpcClientConnection("localhost:8080")
+	conn, err := CreateGrpcClientConnection("localhost:8080")
 	if err != nil {
 		return err
 	}
 	client := consumer.NewConsumerAPIClient(conn)
 
-	produceRequest := &consumer.ConsumerRequest{
+	consumerRequest := &consumer.ConsumerRequest{
 		Key: key,
 	}
 
-	stream, err := client.Subscribe(context.Background(), produceRequest)
+	stream, err := client.Subscribe(context.Background(), consumerRequest)
 	if err != nil {
 		return err
 	}
@@ -33,6 +33,6 @@ func Subscribe(key string) error {
 		if err != nil {
 			return err
 		}
-		fmt.Println(msg)
+		fmt.Println(msg.GetMessage())
 	}
 }
