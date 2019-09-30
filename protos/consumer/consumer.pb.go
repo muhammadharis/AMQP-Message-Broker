@@ -24,102 +24,187 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type ConsumerRequest struct {
-	Key                  string   `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty"`
+type ConsumerReadRequest struct {
+	QueueName            string   `protobuf:"bytes,1,opt,name=queueName,proto3" json:"queueName,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ConsumerRequest) Reset()         { *m = ConsumerRequest{} }
-func (m *ConsumerRequest) String() string { return proto.CompactTextString(m) }
-func (*ConsumerRequest) ProtoMessage()    {}
-func (*ConsumerRequest) Descriptor() ([]byte, []int) {
+func (m *ConsumerReadRequest) Reset()         { *m = ConsumerReadRequest{} }
+func (m *ConsumerReadRequest) String() string { return proto.CompactTextString(m) }
+func (*ConsumerReadRequest) ProtoMessage()    {}
+func (*ConsumerReadRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_9e92dd3678396abb, []int{0}
 }
 
-func (m *ConsumerRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ConsumerRequest.Unmarshal(m, b)
+func (m *ConsumerReadRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConsumerReadRequest.Unmarshal(m, b)
 }
-func (m *ConsumerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ConsumerRequest.Marshal(b, m, deterministic)
+func (m *ConsumerReadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConsumerReadRequest.Marshal(b, m, deterministic)
 }
-func (m *ConsumerRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConsumerRequest.Merge(m, src)
+func (m *ConsumerReadRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConsumerReadRequest.Merge(m, src)
 }
-func (m *ConsumerRequest) XXX_Size() int {
-	return xxx_messageInfo_ConsumerRequest.Size(m)
+func (m *ConsumerReadRequest) XXX_Size() int {
+	return xxx_messageInfo_ConsumerReadRequest.Size(m)
 }
-func (m *ConsumerRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConsumerRequest.DiscardUnknown(m)
+func (m *ConsumerReadRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConsumerReadRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ConsumerRequest proto.InternalMessageInfo
+var xxx_messageInfo_ConsumerReadRequest proto.InternalMessageInfo
 
-func (m *ConsumerRequest) GetKey() string {
+func (m *ConsumerReadRequest) GetQueueName() string {
 	if m != nil {
-		return m.Key
+		return m.QueueName
 	}
 	return ""
 }
 
-type ConsumerResponse struct {
-	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+type ConsumerReadResponse struct {
+	Message              string   `protobuf:"bytes,1,opt,name=Message,proto3" json:"Message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ConsumerResponse) Reset()         { *m = ConsumerResponse{} }
-func (m *ConsumerResponse) String() string { return proto.CompactTextString(m) }
-func (*ConsumerResponse) ProtoMessage()    {}
-func (*ConsumerResponse) Descriptor() ([]byte, []int) {
+func (m *ConsumerReadResponse) Reset()         { *m = ConsumerReadResponse{} }
+func (m *ConsumerReadResponse) String() string { return proto.CompactTextString(m) }
+func (*ConsumerReadResponse) ProtoMessage()    {}
+func (*ConsumerReadResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_9e92dd3678396abb, []int{1}
 }
 
-func (m *ConsumerResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ConsumerResponse.Unmarshal(m, b)
+func (m *ConsumerReadResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConsumerReadResponse.Unmarshal(m, b)
 }
-func (m *ConsumerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ConsumerResponse.Marshal(b, m, deterministic)
+func (m *ConsumerReadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConsumerReadResponse.Marshal(b, m, deterministic)
 }
-func (m *ConsumerResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConsumerResponse.Merge(m, src)
+func (m *ConsumerReadResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConsumerReadResponse.Merge(m, src)
 }
-func (m *ConsumerResponse) XXX_Size() int {
-	return xxx_messageInfo_ConsumerResponse.Size(m)
+func (m *ConsumerReadResponse) XXX_Size() int {
+	return xxx_messageInfo_ConsumerReadResponse.Size(m)
 }
-func (m *ConsumerResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConsumerResponse.DiscardUnknown(m)
+func (m *ConsumerReadResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConsumerReadResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ConsumerResponse proto.InternalMessageInfo
+var xxx_messageInfo_ConsumerReadResponse proto.InternalMessageInfo
 
-func (m *ConsumerResponse) GetMessage() string {
+func (m *ConsumerReadResponse) GetMessage() string {
 	if m != nil {
 		return m.Message
 	}
 	return ""
 }
 
+type ConsumerGroupRequest struct {
+	ConsumerGroupName    string   `protobuf:"bytes,1,opt,name=ConsumerGroupName,proto3" json:"ConsumerGroupName,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ConsumerGroupRequest) Reset()         { *m = ConsumerGroupRequest{} }
+func (m *ConsumerGroupRequest) String() string { return proto.CompactTextString(m) }
+func (*ConsumerGroupRequest) ProtoMessage()    {}
+func (*ConsumerGroupRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_9e92dd3678396abb, []int{2}
+}
+
+func (m *ConsumerGroupRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConsumerGroupRequest.Unmarshal(m, b)
+}
+func (m *ConsumerGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConsumerGroupRequest.Marshal(b, m, deterministic)
+}
+func (m *ConsumerGroupRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConsumerGroupRequest.Merge(m, src)
+}
+func (m *ConsumerGroupRequest) XXX_Size() int {
+	return xxx_messageInfo_ConsumerGroupRequest.Size(m)
+}
+func (m *ConsumerGroupRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConsumerGroupRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConsumerGroupRequest proto.InternalMessageInfo
+
+func (m *ConsumerGroupRequest) GetConsumerGroupName() string {
+	if m != nil {
+		return m.ConsumerGroupName
+	}
+	return ""
+}
+
+type ConsumerGroupResponse struct {
+	ErrorCode            string   `protobuf:"bytes,1,opt,name=ErrorCode,proto3" json:"ErrorCode,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ConsumerGroupResponse) Reset()         { *m = ConsumerGroupResponse{} }
+func (m *ConsumerGroupResponse) String() string { return proto.CompactTextString(m) }
+func (*ConsumerGroupResponse) ProtoMessage()    {}
+func (*ConsumerGroupResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_9e92dd3678396abb, []int{3}
+}
+
+func (m *ConsumerGroupResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConsumerGroupResponse.Unmarshal(m, b)
+}
+func (m *ConsumerGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConsumerGroupResponse.Marshal(b, m, deterministic)
+}
+func (m *ConsumerGroupResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConsumerGroupResponse.Merge(m, src)
+}
+func (m *ConsumerGroupResponse) XXX_Size() int {
+	return xxx_messageInfo_ConsumerGroupResponse.Size(m)
+}
+func (m *ConsumerGroupResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConsumerGroupResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConsumerGroupResponse proto.InternalMessageInfo
+
+func (m *ConsumerGroupResponse) GetErrorCode() string {
+	if m != nil {
+		return m.ErrorCode
+	}
+	return ""
+}
+
 func init() {
-	proto.RegisterType((*ConsumerRequest)(nil), "ConsumerRequest")
-	proto.RegisterType((*ConsumerResponse)(nil), "ConsumerResponse")
+	proto.RegisterType((*ConsumerReadRequest)(nil), "ConsumerReadRequest")
+	proto.RegisterType((*ConsumerReadResponse)(nil), "ConsumerReadResponse")
+	proto.RegisterType((*ConsumerGroupRequest)(nil), "ConsumerGroupRequest")
+	proto.RegisterType((*ConsumerGroupResponse)(nil), "ConsumerGroupResponse")
 }
 
 func init() { proto.RegisterFile("protos/consumer/consumer.proto", fileDescriptor_9e92dd3678396abb) }
 
 var fileDescriptor_9e92dd3678396abb = []byte{
-	// 142 bytes of a gzipped FileDescriptorProto
+	// 220 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2b, 0x28, 0xca, 0x2f,
 	0xc9, 0x2f, 0xd6, 0x4f, 0xce, 0xcf, 0x2b, 0x2e, 0xcd, 0x4d, 0x2d, 0x82, 0x33, 0xf4, 0xc0, 0x12,
-	0x4a, 0xca, 0x5c, 0xfc, 0xce, 0x50, 0x91, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x21, 0x01,
-	0x2e, 0x66, 0xef, 0xd4, 0x4a, 0x09, 0x46, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x10, 0x53, 0x49, 0x87,
-	0x4b, 0x00, 0xa1, 0xa8, 0xb8, 0x20, 0x3f, 0xaf, 0x38, 0x55, 0x48, 0x82, 0x8b, 0x3d, 0x37, 0xb5,
-	0xb8, 0x38, 0x31, 0x3d, 0x15, 0xaa, 0x12, 0xc6, 0x35, 0x72, 0xe4, 0xe2, 0x86, 0xa9, 0x76, 0x0c,
-	0xf0, 0x14, 0x32, 0xe2, 0xe2, 0x0c, 0x2e, 0x4d, 0x2a, 0x4e, 0x2e, 0xca, 0x4c, 0x4a, 0x15, 0x12,
-	0xd0, 0x43, 0xb3, 0x4d, 0x4a, 0x50, 0x0f, 0xdd, 0x68, 0x03, 0xc6, 0x24, 0x36, 0xb0, 0xe3, 0x8c,
-	0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x40, 0xe8, 0xb2, 0x06, 0xbe, 0x00, 0x00, 0x00,
+	0x4a, 0xc6, 0x5c, 0xc2, 0xce, 0x50, 0x91, 0xa0, 0xd4, 0xc4, 0x94, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4,
+	0xe2, 0x12, 0x21, 0x19, 0x2e, 0xce, 0xc2, 0xd2, 0xd4, 0xd2, 0x54, 0xbf, 0xc4, 0xdc, 0x54, 0x09,
+	0x46, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x84, 0x80, 0x92, 0x01, 0x97, 0x08, 0xaa, 0xa6, 0xe2, 0x82,
+	0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x09, 0x2e, 0x76, 0xdf, 0xd4, 0xe2, 0xe2, 0xc4, 0x74, 0x98, 0x1e,
+	0x18, 0x57, 0xc9, 0x05, 0xa1, 0xc3, 0xbd, 0x28, 0xbf, 0xb4, 0x00, 0x66, 0x8f, 0x0e, 0x97, 0x20,
+	0x8a, 0x38, 0x92, 0x7d, 0x98, 0x12, 0x4a, 0xa6, 0x5c, 0xa2, 0x68, 0xa6, 0x40, 0x2d, 0x96, 0xe1,
+	0xe2, 0x74, 0x2d, 0x2a, 0xca, 0x2f, 0x72, 0xce, 0x4f, 0x81, 0x3b, 0x17, 0x2e, 0x60, 0xd4, 0xcf,
+	0xc8, 0xc5, 0x0d, 0xd3, 0xe7, 0x18, 0xe0, 0x29, 0x64, 0xc5, 0xc5, 0x19, 0x5c, 0x9a, 0x54, 0x9c,
+	0x5c, 0x94, 0x99, 0x94, 0x2a, 0x24, 0xa2, 0x87, 0xc5, 0xff, 0x52, 0xa2, 0x7a, 0xd8, 0x3c, 0x68,
+	0xc0, 0x28, 0xe4, 0xc2, 0x25, 0xec, 0x5c, 0x94, 0x9a, 0x58, 0x92, 0x8a, 0xe2, 0x10, 0x21, 0x84,
+	0x7a, 0x64, 0xef, 0x49, 0x89, 0xe9, 0x61, 0x75, 0x6f, 0x12, 0x1b, 0x38, 0xf0, 0x8d, 0x01, 0x01,
+	0x00, 0x00, 0xff, 0xff, 0x3a, 0x00, 0x76, 0x13, 0x9e, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -134,7 +219,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ConsumerAPIClient interface {
-	Subscribe(ctx context.Context, in *ConsumerRequest, opts ...grpc.CallOption) (ConsumerAPI_SubscribeClient, error)
+	Subscribe(ctx context.Context, in *ConsumerReadRequest, opts ...grpc.CallOption) (ConsumerAPI_SubscribeClient, error)
+	CreateConsumerGroup(ctx context.Context, in *ConsumerGroupRequest, opts ...grpc.CallOption) (*ConsumerGroupResponse, error)
 }
 
 type consumerAPIClient struct {
@@ -145,7 +231,7 @@ func NewConsumerAPIClient(cc *grpc.ClientConn) ConsumerAPIClient {
 	return &consumerAPIClient{cc}
 }
 
-func (c *consumerAPIClient) Subscribe(ctx context.Context, in *ConsumerRequest, opts ...grpc.CallOption) (ConsumerAPI_SubscribeClient, error) {
+func (c *consumerAPIClient) Subscribe(ctx context.Context, in *ConsumerReadRequest, opts ...grpc.CallOption) (ConsumerAPI_SubscribeClient, error) {
 	stream, err := c.cc.NewStream(ctx, &_ConsumerAPI_serviceDesc.Streams[0], "/ConsumerAPI/Subscribe", opts...)
 	if err != nil {
 		return nil, err
@@ -161,7 +247,7 @@ func (c *consumerAPIClient) Subscribe(ctx context.Context, in *ConsumerRequest, 
 }
 
 type ConsumerAPI_SubscribeClient interface {
-	Recv() (*ConsumerResponse, error)
+	Recv() (*ConsumerReadResponse, error)
 	grpc.ClientStream
 }
 
@@ -169,25 +255,38 @@ type consumerAPISubscribeClient struct {
 	grpc.ClientStream
 }
 
-func (x *consumerAPISubscribeClient) Recv() (*ConsumerResponse, error) {
-	m := new(ConsumerResponse)
+func (x *consumerAPISubscribeClient) Recv() (*ConsumerReadResponse, error) {
+	m := new(ConsumerReadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
+func (c *consumerAPIClient) CreateConsumerGroup(ctx context.Context, in *ConsumerGroupRequest, opts ...grpc.CallOption) (*ConsumerGroupResponse, error) {
+	out := new(ConsumerGroupResponse)
+	err := c.cc.Invoke(ctx, "/ConsumerAPI/CreateConsumerGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConsumerAPIServer is the server API for ConsumerAPI service.
 type ConsumerAPIServer interface {
-	Subscribe(*ConsumerRequest, ConsumerAPI_SubscribeServer) error
+	Subscribe(*ConsumerReadRequest, ConsumerAPI_SubscribeServer) error
+	CreateConsumerGroup(context.Context, *ConsumerGroupRequest) (*ConsumerGroupResponse, error)
 }
 
 // UnimplementedConsumerAPIServer can be embedded to have forward compatible implementations.
 type UnimplementedConsumerAPIServer struct {
 }
 
-func (*UnimplementedConsumerAPIServer) Subscribe(req *ConsumerRequest, srv ConsumerAPI_SubscribeServer) error {
+func (*UnimplementedConsumerAPIServer) Subscribe(req *ConsumerReadRequest, srv ConsumerAPI_SubscribeServer) error {
 	return status.Errorf(codes.Unimplemented, "method Subscribe not implemented")
+}
+func (*UnimplementedConsumerAPIServer) CreateConsumerGroup(ctx context.Context, req *ConsumerGroupRequest) (*ConsumerGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateConsumerGroup not implemented")
 }
 
 func RegisterConsumerAPIServer(s *grpc.Server, srv ConsumerAPIServer) {
@@ -195,7 +294,7 @@ func RegisterConsumerAPIServer(s *grpc.Server, srv ConsumerAPIServer) {
 }
 
 func _ConsumerAPI_Subscribe_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ConsumerRequest)
+	m := new(ConsumerReadRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -203,7 +302,7 @@ func _ConsumerAPI_Subscribe_Handler(srv interface{}, stream grpc.ServerStream) e
 }
 
 type ConsumerAPI_SubscribeServer interface {
-	Send(*ConsumerResponse) error
+	Send(*ConsumerReadResponse) error
 	grpc.ServerStream
 }
 
@@ -211,14 +310,37 @@ type consumerAPISubscribeServer struct {
 	grpc.ServerStream
 }
 
-func (x *consumerAPISubscribeServer) Send(m *ConsumerResponse) error {
+func (x *consumerAPISubscribeServer) Send(m *ConsumerReadResponse) error {
 	return x.ServerStream.SendMsg(m)
+}
+
+func _ConsumerAPI_CreateConsumerGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConsumerGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsumerAPIServer).CreateConsumerGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ConsumerAPI/CreateConsumerGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsumerAPIServer).CreateConsumerGroup(ctx, req.(*ConsumerGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _ConsumerAPI_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "ConsumerAPI",
 	HandlerType: (*ConsumerAPIServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateConsumerGroup",
+			Handler:    _ConsumerAPI_CreateConsumerGroup_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Subscribe",

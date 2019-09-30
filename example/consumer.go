@@ -36,3 +36,4 @@ func Subscribe(key string) error {
 		fmt.Println(msg.GetMessage())
 	}
 }
+

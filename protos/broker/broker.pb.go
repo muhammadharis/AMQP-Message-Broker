@@ -24,8 +24,164 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type CreateExchangeRequest struct {
+	ExchangeName         string   `protobuf:"bytes,1,opt,name=ExchangeName,proto3" json:"ExchangeName,omitempty"`
+	Type                 string   `protobuf:"bytes,2,opt,name=Type,proto3" json:"Type,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateExchangeRequest) Reset()         { *m = CreateExchangeRequest{} }
+func (m *CreateExchangeRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateExchangeRequest) ProtoMessage()    {}
+func (*CreateExchangeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a39eb6806bc9a398, []int{0}
+}
+
+func (m *CreateExchangeRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateExchangeRequest.Unmarshal(m, b)
+}
+func (m *CreateExchangeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateExchangeRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateExchangeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateExchangeRequest.Merge(m, src)
+}
+func (m *CreateExchangeRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateExchangeRequest.Size(m)
+}
+func (m *CreateExchangeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateExchangeRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateExchangeRequest proto.InternalMessageInfo
+
+func (m *CreateExchangeRequest) GetExchangeName() string {
+	if m != nil {
+		return m.ExchangeName
+	}
+	return ""
+}
+
+func (m *CreateExchangeRequest) GetType() string {
+	if m != nil {
+		return m.Type
+	}
+	return ""
+}
+
+type CreateExchangeResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateExchangeResponse) Reset()         { *m = CreateExchangeResponse{} }
+func (m *CreateExchangeResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateExchangeResponse) ProtoMessage()    {}
+func (*CreateExchangeResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a39eb6806bc9a398, []int{1}
+}
+
+func (m *CreateExchangeResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateExchangeResponse.Unmarshal(m, b)
+}
+func (m *CreateExchangeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateExchangeResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateExchangeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateExchangeResponse.Merge(m, src)
+}
+func (m *CreateExchangeResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateExchangeResponse.Size(m)
+}
+func (m *CreateExchangeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateExchangeResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateExchangeResponse proto.InternalMessageInfo
+
+type CreateQueueRequest struct {
+	ExchangeName         string   `protobuf:"bytes,1,opt,name=ExchangeName,proto3" json:"ExchangeName,omitempty"`
+	QueueName            string   `protobuf:"bytes,2,opt,name=QueueName,proto3" json:"QueueName,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateQueueRequest) Reset()         { *m = CreateQueueRequest{} }
+func (m *CreateQueueRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateQueueRequest) ProtoMessage()    {}
+func (*CreateQueueRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a39eb6806bc9a398, []int{2}
+}
+
+func (m *CreateQueueRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateQueueRequest.Unmarshal(m, b)
+}
+func (m *CreateQueueRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateQueueRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateQueueRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateQueueRequest.Merge(m, src)
+}
+func (m *CreateQueueRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateQueueRequest.Size(m)
+}
+func (m *CreateQueueRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateQueueRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateQueueRequest proto.InternalMessageInfo
+
+func (m *CreateQueueRequest) GetExchangeName() string {
+	if m != nil {
+		return m.ExchangeName
+	}
+	return ""
+}
+
+func (m *CreateQueueRequest) GetQueueName() string {
+	if m != nil {
+		return m.QueueName
+	}
+	return ""
+}
+
+type CreateQueueResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateQueueResponse) Reset()         { *m = CreateQueueResponse{} }
+func (m *CreateQueueResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateQueueResponse) ProtoMessage()    {}
+func (*CreateQueueResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a39eb6806bc9a398, []int{3}
+}
+
+func (m *CreateQueueResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateQueueResponse.Unmarshal(m, b)
+}
+func (m *CreateQueueResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateQueueResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateQueueResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateQueueResponse.Merge(m, src)
+}
+func (m *CreateQueueResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateQueueResponse.Size(m)
+}
+func (m *CreateQueueResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateQueueResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateQueueResponse proto.InternalMessageInfo
+
 type ProduceRequest struct {
-	RoutingKey           string   `protobuf:"bytes,1,opt,name=RoutingKey,proto3" json:"RoutingKey,omitempty"`
+	StreamName           string   `protobuf:"bytes,1,opt,name=StreamName,proto3" json:"StreamName,omitempty"`
 	MessageSetSize       uint32   `protobuf:"varint,2,opt,name=MessageSetSize,proto3" json:"MessageSetSize,omitempty"`
 	MessageSet           []byte   `protobuf:"bytes,3,opt,name=MessageSet,proto3" json:"MessageSet,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -37,7 +193,7 @@ func (m *ProduceRequest) Reset()         { *m = ProduceRequest{} }
 func (m *ProduceRequest) String() string { return proto.CompactTextString(m) }
 func (*ProduceRequest) ProtoMessage()    {}
 func (*ProduceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a39eb6806bc9a398, []int{0}
+	return fileDescriptor_a39eb6806bc9a398, []int{4}
 }
 
 func (m *ProduceRequest) XXX_Unmarshal(b []byte) error {
@@ -58,9 +214,9 @@ func (m *ProduceRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ProduceRequest proto.InternalMessageInfo
 
-func (m *ProduceRequest) GetRoutingKey() string {
+func (m *ProduceRequest) GetStreamName() string {
 	if m != nil {
-		return m.RoutingKey
+		return m.StreamName
 	}
 	return ""
 }
@@ -90,7 +246,7 @@ func (m *ProduceResponse) Reset()         { *m = ProduceResponse{} }
 func (m *ProduceResponse) String() string { return proto.CompactTextString(m) }
 func (*ProduceResponse) ProtoMessage()    {}
 func (*ProduceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a39eb6806bc9a398, []int{1}
+	return fileDescriptor_a39eb6806bc9a398, []int{5}
 }
 
 func (m *ProduceResponse) XXX_Unmarshal(b []byte) error {
@@ -119,6 +275,10 @@ func (m *ProduceResponse) GetErrorCode() uint32 {
 }
 
 func init() {
+	proto.RegisterType((*CreateExchangeRequest)(nil), "CreateExchangeRequest")
+	proto.RegisterType((*CreateExchangeResponse)(nil), "CreateExchangeResponse")
+	proto.RegisterType((*CreateQueueRequest)(nil), "CreateQueueRequest")
+	proto.RegisterType((*CreateQueueResponse)(nil), "CreateQueueResponse")
 	proto.RegisterType((*ProduceRequest)(nil), "ProduceRequest")
 	proto.RegisterType((*ProduceResponse)(nil), "ProduceResponse")
 }
@@ -126,19 +286,26 @@ func init() {
 func init() { proto.RegisterFile("protos/broker/broker.proto", fileDescriptor_a39eb6806bc9a398) }
 
 var fileDescriptor_a39eb6806bc9a398 = []byte{
-	// 186 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2a, 0x28, 0xca, 0x2f,
-	0xc9, 0x2f, 0xd6, 0x4f, 0x2a, 0xca, 0xcf, 0x4e, 0x2d, 0x82, 0x52, 0x7a, 0x60, 0x41, 0xa5, 0x0a,
-	0x2e, 0xbe, 0x80, 0xa2, 0xfc, 0x94, 0xd2, 0xe4, 0xd4, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2, 0x12,
-	0x21, 0x39, 0x2e, 0xae, 0xa0, 0xfc, 0xd2, 0x92, 0xcc, 0xbc, 0x74, 0xef, 0xd4, 0x4a, 0x09, 0x46,
-	0x05, 0x46, 0x0d, 0xce, 0x20, 0x24, 0x11, 0x21, 0x35, 0x2e, 0x3e, 0xdf, 0xd4, 0xe2, 0xe2, 0xc4,
-	0xf4, 0xd4, 0xe0, 0xd4, 0x92, 0xe0, 0xcc, 0xaa, 0x54, 0x09, 0x26, 0x05, 0x46, 0x0d, 0xde, 0x20,
-	0x34, 0x51, 0x90, 0x39, 0x08, 0x11, 0x09, 0x66, 0x05, 0x46, 0x0d, 0x9e, 0x20, 0x24, 0x11, 0x25,
-	0x7d, 0x2e, 0x7e, 0xb8, 0xcd, 0xc5, 0x05, 0xf9, 0x79, 0xc5, 0xa9, 0x42, 0x32, 0x5c, 0x9c, 0xae,
-	0x45, 0x45, 0xf9, 0x45, 0xce, 0xf9, 0x29, 0xa9, 0x60, 0x9b, 0x79, 0x83, 0x10, 0x02, 0x46, 0x56,
-	0x5c, 0x5c, 0x50, 0x0d, 0x8e, 0x01, 0x9e, 0x42, 0x3a, 0x5c, 0xec, 0x50, 0x9e, 0x10, 0xbf, 0x1e,
-	0xaa, 0x17, 0xa4, 0x04, 0xf4, 0xd0, 0x4c, 0x4e, 0x62, 0x03, 0xfb, 0xd6, 0x18, 0x10, 0x00, 0x00,
-	0xff, 0xff, 0x48, 0xca, 0x33, 0x1f, 0x0b, 0x01, 0x00, 0x00,
+	// 294 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x92, 0x4f, 0x4f, 0xf2, 0x40,
+	0x10, 0x87, 0xd3, 0xf7, 0x35, 0x26, 0x8c, 0x50, 0xcc, 0x20, 0xd8, 0x34, 0xc6, 0x90, 0x3d, 0x18,
+	0x4e, 0x4b, 0x22, 0x17, 0xaf, 0x84, 0x70, 0xf0, 0xa0, 0x62, 0x6b, 0xbc, 0x2f, 0x30, 0x41, 0x63,
+	0x60, 0xeb, 0xee, 0x36, 0x41, 0x3f, 0x9c, 0x9f, 0xcd, 0xb0, 0x5b, 0xfb, 0xcf, 0x5e, 0x3c, 0xb5,
+	0x79, 0xa6, 0x33, 0x4f, 0xe7, 0xb7, 0x0b, 0x61, 0xa2, 0xa4, 0x91, 0x7a, 0xbc, 0x54, 0xf2, 0x8d,
+	0x54, 0xf6, 0xe0, 0x16, 0xb2, 0x07, 0xe8, 0xcf, 0x14, 0x09, 0x43, 0xf3, 0xfd, 0xea, 0x45, 0xec,
+	0x36, 0x14, 0xd1, 0x7b, 0x4a, 0xda, 0x20, 0x83, 0xf6, 0x0f, 0xba, 0x17, 0x5b, 0x0a, 0xbc, 0xa1,
+	0x37, 0x6a, 0x45, 0x15, 0x86, 0x08, 0x47, 0x4f, 0x1f, 0x09, 0x05, 0xff, 0x6c, 0xcd, 0xbe, 0xb3,
+	0x00, 0x06, 0xf5, 0x81, 0x3a, 0x91, 0x3b, 0x4d, 0xec, 0x19, 0xd0, 0x55, 0x1e, 0x53, 0x4a, 0xff,
+	0xe4, 0xb9, 0x80, 0x96, 0xed, 0xb1, 0x1f, 0x38, 0x59, 0x01, 0x58, 0x1f, 0x7a, 0x95, 0xb9, 0x99,
+	0x6e, 0x0f, 0xfe, 0x42, 0xc9, 0x75, 0xba, 0xca, 0x55, 0x97, 0x00, 0xb1, 0x51, 0x24, 0xb6, 0x25,
+	0x51, 0x89, 0xe0, 0x15, 0xf8, 0x77, 0xa4, 0xb5, 0xd8, 0x50, 0x4c, 0x26, 0x7e, 0xfd, 0x74, 0xae,
+	0x4e, 0x54, 0xa3, 0x87, 0x39, 0x05, 0x09, 0xfe, 0x0f, 0xbd, 0x51, 0x3b, 0x2a, 0x11, 0x36, 0x86,
+	0x6e, 0x6e, 0x76, 0x3f, 0x73, 0xd8, 0x60, 0xae, 0x94, 0x54, 0x33, 0xb9, 0x76, 0xe6, 0x4e, 0x54,
+	0x80, 0xeb, 0x2f, 0x0f, 0x20, 0xeb, 0x98, 0x2e, 0x6e, 0x71, 0x0a, 0x7e, 0x35, 0x42, 0x1c, 0xf0,
+	0xc6, 0x43, 0x0a, 0xcf, 0x79, 0x73, 0xd6, 0x78, 0x03, 0x27, 0xa5, 0x4c, 0xb0, 0xc7, 0x7f, 0x27,
+	0x1f, 0x9e, 0xf1, 0x86, 0xd8, 0x70, 0x92, 0xc7, 0x96, 0x6d, 0x84, 0x5d, 0x5e, 0xcd, 0x31, 0x3c,
+	0xe5, 0xb5, 0xf5, 0x96, 0xc7, 0xf6, 0x32, 0x4d, 0xbe, 0x03, 0x00, 0x00, 0xff, 0xff, 0xaf, 0x87,
+	0x8e, 0x8c, 0x6a, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -153,7 +320,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ProduceAPIClient interface {
-	Produce(ctx context.Context, in *ProduceRequest, opts ...grpc.CallOption) (*ProduceResponse, error)
+	CreateExchange(ctx context.Context, in *CreateExchangeRequest, opts ...grpc.CallOption) (*CreateExchangeResponse, error)
+	CreateQueue(ctx context.Context, in *CreateQueueRequest, opts ...grpc.CallOption) (*CreateQueueResponse, error)
+	ProduceMessage(ctx context.Context, in *ProduceRequest, opts ...grpc.CallOption) (*ProduceResponse, error)
 }
 
 type produceAPIClient struct {
@@ -164,9 +333,27 @@ func NewProduceAPIClient(cc *grpc.ClientConn) ProduceAPIClient {
 	return &produceAPIClient{cc}
 }
 
-func (c *produceAPIClient) Produce(ctx context.Context, in *ProduceRequest, opts ...grpc.CallOption) (*ProduceResponse, error) {
+func (c *produceAPIClient) CreateExchange(ctx context.Context, in *CreateExchangeRequest, opts ...grpc.CallOption) (*CreateExchangeResponse, error) {
+	out := new(CreateExchangeResponse)
+	err := c.cc.Invoke(ctx, "/ProduceAPI/CreateExchange", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceAPIClient) CreateQueue(ctx context.Context, in *CreateQueueRequest, opts ...grpc.CallOption) (*CreateQueueResponse, error) {
+	out := new(CreateQueueResponse)
+	err := c.cc.Invoke(ctx, "/ProduceAPI/CreateQueue", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceAPIClient) ProduceMessage(ctx context.Context, in *ProduceRequest, opts ...grpc.CallOption) (*ProduceResponse, error) {
 	out := new(ProduceResponse)
-	err := c.cc.Invoke(ctx, "/ProduceAPI/Produce", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ProduceAPI/ProduceMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -175,35 +362,79 @@ func (c *produceAPIClient) Produce(ctx context.Context, in *ProduceRequest, opts
 
 // ProduceAPIServer is the server API for ProduceAPI service.
 type ProduceAPIServer interface {
-	Produce(context.Context, *ProduceRequest) (*ProduceResponse, error)
+	CreateExchange(context.Context, *CreateExchangeRequest) (*CreateExchangeResponse, error)
+	CreateQueue(context.Context, *CreateQueueRequest) (*CreateQueueResponse, error)
+	ProduceMessage(context.Context, *ProduceRequest) (*ProduceResponse, error)
 }
 
 // UnimplementedProduceAPIServer can be embedded to have forward compatible implementations.
 type UnimplementedProduceAPIServer struct {
 }
 
-func (*UnimplementedProduceAPIServer) Produce(ctx context.Context, req *ProduceRequest) (*ProduceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Produce not implemented")
+func (*UnimplementedProduceAPIServer) CreateExchange(ctx context.Context, req *CreateExchangeRequest) (*CreateExchangeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateExchange not implemented")
+}
+func (*UnimplementedProduceAPIServer) CreateQueue(ctx context.Context, req *CreateQueueRequest) (*CreateQueueResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateQueue not implemented")
+}
+func (*UnimplementedProduceAPIServer) ProduceMessage(ctx context.Context, req *ProduceRequest) (*ProduceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceMessage not implemented")
 }
 
 func RegisterProduceAPIServer(s *grpc.Server, srv ProduceAPIServer) {
 	s.RegisterService(&_ProduceAPI_serviceDesc, srv)
 }
 
-func _ProduceAPI_Produce_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProduceAPI_CreateExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateExchangeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceAPIServer).CreateExchange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ProduceAPI/CreateExchange",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceAPIServer).CreateExchange(ctx, req.(*CreateExchangeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceAPI_CreateQueue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateQueueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceAPIServer).CreateQueue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ProduceAPI/CreateQueue",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceAPIServer).CreateQueue(ctx, req.(*CreateQueueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceAPI_ProduceMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ProduceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProduceAPIServer).Produce(ctx, in)
+		return srv.(ProduceAPIServer).ProduceMessage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ProduceAPI/Produce",
+		FullMethod: "/ProduceAPI/ProduceMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProduceAPIServer).Produce(ctx, req.(*ProduceRequest))
+		return srv.(ProduceAPIServer).ProduceMessage(ctx, req.(*ProduceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -213,8 +444,16 @@ var _ProduceAPI_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ProduceAPIServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Produce",
-			Handler:    _ProduceAPI_Produce_Handler,
+			MethodName: "CreateExchange",
+			Handler:    _ProduceAPI_CreateExchange_Handler,
+		},
+		{
+			MethodName: "CreateQueue",
+			Handler:    _ProduceAPI_CreateQueue_Handler,
+		},
+		{
+			MethodName: "ProduceMessage",
+			Handler:    _ProduceAPI_ProduceMessage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

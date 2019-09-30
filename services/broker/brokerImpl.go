@@ -3,6 +3,7 @@ package broker
 import (
 	"fmt"
 	"context"
+	"errors"
 	//"strconv"
 	broker "github.com/muhammadharis/grpc/protos/broker"
 	redis "github.com/go-redis/redis"
@@ -10,18 +11,70 @@ import (
 	helpers "github.com/muhammadharis/grpc/services/helpers"
 )
 
-const partitionLimit = 10
+const (
+	partitionLimit = 10
+	exchangeNamespace = "_EXCHANGE_"
+	queueNamespace = "_EXCHANGE_"
+)
 
 type BrokerImpl struct {}
 
+// CreateExchange creates a new exchange with a specified name
+func (*BrokerImpl) CreateExchange(ctx context.Context, request *broker.CreateExchangeRequest) (*broker.CreateExchangeResponse, error) {
+	exchangeName := request.ExchangeName
+	exchangeType := request.Type
+	if exchangeType == "" { // The default exchange is a fanout exchange
+		exchangeType = "fanout"
+	}
+
+	client := helpers.CreateRedisClient("localhost:6379", "", 0)
+
+	exists, err := client.Exists(exchangeNamespace+exchangeName).Result()
+	if err != nil {
+		return nil, err
+	}
+	if (exists > 0) {
+		return  nil, errors.New("An exchange with the name "+exchangeName+" already exists.")
+	}
+
+	cmd := client.Set(exchangeNamespace+exchangeName, map[int]bool{}, 0)
+	if cmd.Err() != nil {
+		return nil, cmd.Err()
+	}
+
+	return &broker.CreateExchangeResponse{}, nil
+}
+
+// CreateQueue creates a new Queue with a specified name
+func (*BrokerImpl) CreateQueue(ctx context.Context, request *broker.CreateQueueRequest) (*broker.CreateQueueResponse, error) {
+	queueName := request.QueueName
+	
+	client := helpers.CreateRedisClient("localhost:6379", "", 0)
+
+	exists, err := client.Exists(queueNamespace+queueName).Result()
+	if err != nil {
+		return nil, err
+	}
+	if (exists > 0) {
+		return  nil, errors.New("A queue with the name "+queueName+" already exists.")
+	}
+
+	cmd := client.Set(queueNamespace+queueName, map[int]bool{}, 0)
+	if cmd.Err() != nil {
+		return nil, cmd.Err()
+	}
+
+	return &broker.CreateQueueResponse{}, nil
+}
+
 // Produce consumes a producer's message
 func (*BrokerImpl) Produce(ctx context.Context, request *broker.ProduceRequest) (*broker.ProduceResponse, error) {
-	routingKey := request.RoutingKey
+	streamName := request.StreamName
 	//messageSet := request.MessageSet
 	client := helpers.CreateRedisClient("localhost:6379", "", 0) //No password, default DB
 	
 	xAddArgument := &redis.XAddArgs{
-		Stream: routingKey,
+		Stream: streamName,
 		MaxLen: partitionLimit,
 		MaxLenApprox: partitionLimit,
 		ID: "*",
@@ -32,42 +85,6 @@ func (*BrokerImpl) Produce(ctx context.Context, request *broker.ProduceRequest) 
 	cmd := client.XAdd(xAddArgument)
 	fmt.Println(cmd.String())
 
-	/*dirtyPartition := false // Is set when the partition number is changed
-
-	// The Redis routing key will hold the partition number, actual data is stored in routingkey+partitionNumber
-	var partitionNumber int64
-	if partitionUnparsed := client.Get(routingKey); partitionUnparsed.Val() == "" {
-		partitionNumber = 0
-	} else {
-		var err error
-		partitionNumber, err = partitionUnparsed.Int64()
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	sizeOfCurrentPartition := client.LLen(routingKey+string(partitionNumber)).Val()
-	// Increment the partition number if the partition is at its max capacity
-	if sizeOfCurrentPartition >= partitionLimit {
-		dirtyPartition = true
-		partitionNumber++
-		sizeOfCurrentPartition = 0
-	}
-
-	for msg := range messageSet {
-		client.RPush(routingKey+strconv.FormatInt(partitionNumber, 10), msg) //We store messages in routingKey+partitionNumber
-		sizeOfCurrentPartition ++
-		if sizeOfCurrentPartition >= partitionLimit { //Increment partition # if partition reaches max capacity while adding elements
-			dirtyPartition = true
-			partitionNumber++
-			sizeOfCurrentPartition = 0
-		}
-	}
-
-	// Set the partition number if we dirtied the partition number
-	if dirtyPartition {
-		client.Set(routingKey, partitionNumber, 0)
-	}*/
 	resp := &broker.ProduceResponse{}
 	return resp, nil
 }

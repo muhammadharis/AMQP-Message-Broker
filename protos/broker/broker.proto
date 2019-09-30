@@ -1,7 +1,25 @@
 syntax = "proto3";
 
+message CreateExchangeRequest {
+  string ExchangeName = 1;
+  string Type = 2;
+}
+
+message CreateExchangeResponse {
+
+}
+
+message CreateQueueRequest {
+  string ExchangeName = 1;
+  string QueueName = 2;
+}
+
+message CreateQueueResponse {
+
+}
+
 message ProduceRequest {
-  string RoutingKey = 1;
+  string StreamName = 1;
   uint32 MessageSetSize = 2;
   bytes MessageSet = 3;
 }
@@ -11,6 +29,8 @@ message ProduceResponse {
 }
 
 service ProduceAPI {
-  rpc Produce (ProduceRequest) returns (ProduceResponse);
+  rpc CreateExchange(CreateExchangeRequest) returns (CreateExchangeResponse);
+  rpc CreateQueue(CreateQueueRequest) returns (CreateQueueResponse);
+  rpc ProduceMessage (ProduceRequest) returns (ProduceResponse);
 }
 

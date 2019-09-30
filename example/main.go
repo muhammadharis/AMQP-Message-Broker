@@ -2,7 +2,6 @@ package main
 
 import (
 	//"bufio"
-	"fmt"
 	"strings"
 	"os"
 	"strconv"
