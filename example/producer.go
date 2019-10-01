@@ -6,23 +6,41 @@ import (
 	broker "github.com/muhammadharis/grpc/protos/broker"
 )
 
-// Produce allows a producer to produce a message to the broker
-func Produce(routingKey, message string) (*broker.ProduceResponse, error) {
+// FanoutMessage allows a producer to produce a fanout message to the broker
+func FanoutMessage(message string) error {
 	conn, err := CreateGrpcClientConnection("localhost:8080")
 	if err != nil {
-		return nil, err
+		return err
 	}
+	
+	// Initialize the client
 	client := broker.NewProduceAPIClient(conn)
 
-	produceRequest := &broker.ProduceRequest{
-		RoutingKey: routingKey,
-		MessageSet: []byte(message),
+	// Create a new exchange
+	createExchangeRequest := &broker.CreateExchangeRequest {
+		ExchangeName : "my_exchange",
+  		Type: "direct",
 	}
+	client.CreateExchange(context.Background(), createExchangeRequest)
 
-	produceResponse, err := client.Produce(context.Background(), produceRequest)
-	if err != nil {
-		return nil, err
+	// Create a new queue
+	createQueueRequest := &broker.CreateQueueRequest {
+		QueueName: "my_queue",
 	}
+	client.CreateQueue(context.Background(), createQueueRequest)
 
-	return produceResponse, nil
+	// Create a binding between queue and exchange
+	bindingRequest := &broker.BindQueueRequest {
+		ExchangeName: "my_exchange",
+		QueueName: "my_queue",
+	}
+	client.BindQueue(context.Background(), bindingRequest)
+
+	// Produce a direct message to my_queue
+	produceRequest := &broker.ProduceRequest {
+		ExchangeName: "my_exchange",
+		QueueName: "my_queue",
+	}
+	client.ProduceMessage(context.Background(), produceRequest)
+	return nil
 }
