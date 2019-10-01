@@ -1,5 +1,14 @@
 syntax = "proto3";
 
+message BindQueueRequest {
+  string ExchangeName = 1;
+  string QueueName = 2;
+}
+
+message BindQueueResponse {
+
+}
+
 message CreateExchangeRequest {
   string ExchangeName = 1;
   string Type = 2;
@@ -29,6 +38,7 @@ message ProduceResponse {
 }
 
 service ProduceAPI {
+  rpc BindQueue (BindQueueRequest) returns (BindQueueResponse);
   rpc CreateExchange(CreateExchangeRequest) returns (CreateExchangeResponse);
   rpc CreateQueue(CreateQueueRequest) returns (CreateQueueResponse);
   rpc ProduceMessage (ProduceRequest) returns (ProduceResponse);

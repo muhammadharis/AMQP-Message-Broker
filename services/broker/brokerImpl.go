@@ -48,7 +48,7 @@ func (*BrokerImpl) CreateExchange(ctx context.Context, request *broker.CreateExc
 // CreateQueue creates a new Queue with a specified name
 func (*BrokerImpl) CreateQueue(ctx context.Context, request *broker.CreateQueueRequest) (*broker.CreateQueueResponse, error) {
 	queueName := request.QueueName
-	
+
 	client := helpers.CreateRedisClient("localhost:6379", "", 0)
 
 	exists, err := client.Exists(queueNamespace+queueName).Result()
@@ -65,6 +65,26 @@ func (*BrokerImpl) CreateQueue(ctx context.Context, request *broker.CreateQueueR
 	}
 
 	return &broker.CreateQueueResponse{}, nil
+}
+
+// BindQueue binds an existing queue to an existing exchange
+func (*BrokerImpl) BindQueue(ctx context.Context, request *broker.BindQueueRequest) (*broker.BindQueueResponse, error) {
+	exchangeName := request.ExchangeName
+	queueName := request.QueueName
+	
+	client := helpers.CreateRedisClient("localhost:6379", "", 0)
+
+	// Add the specified queue to the set of queues held by the specified exchange, and vice versa
+	cmd := client.HSet(exchangeNamespace+exchangeName, queueName, true)
+	if cmd.Err() != nil {
+		return nil, cmd.Err()
+	}
+	cmd = client.HSet(queueNamespace+queueName, exchangeName, true)
+	if cmd.Err() != nil {
+		return nil, cmd.Err()
+	}
+	
+	return &broker.BindQueueResponse{}, nil
 }
 
 // Produce consumes a producer's message
