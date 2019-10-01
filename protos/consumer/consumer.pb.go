@@ -102,80 +102,88 @@ func (m *ConsumerReadResponse) GetMessage() string {
 	return ""
 }
 
-type ConsumerGroupRequest struct {
+type ConsumerGroupReadRequest struct {
 	ConsumerGroupName    string   `protobuf:"bytes,1,opt,name=ConsumerGroupName,proto3" json:"ConsumerGroupName,omitempty"`
+	QueueName            string   `protobuf:"bytes,2,opt,name=QueueName,proto3" json:"QueueName,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ConsumerGroupRequest) Reset()         { *m = ConsumerGroupRequest{} }
-func (m *ConsumerGroupRequest) String() string { return proto.CompactTextString(m) }
-func (*ConsumerGroupRequest) ProtoMessage()    {}
-func (*ConsumerGroupRequest) Descriptor() ([]byte, []int) {
+func (m *ConsumerGroupReadRequest) Reset()         { *m = ConsumerGroupReadRequest{} }
+func (m *ConsumerGroupReadRequest) String() string { return proto.CompactTextString(m) }
+func (*ConsumerGroupReadRequest) ProtoMessage()    {}
+func (*ConsumerGroupReadRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_9e92dd3678396abb, []int{2}
 }
 
-func (m *ConsumerGroupRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ConsumerGroupRequest.Unmarshal(m, b)
+func (m *ConsumerGroupReadRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConsumerGroupReadRequest.Unmarshal(m, b)
 }
-func (m *ConsumerGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ConsumerGroupRequest.Marshal(b, m, deterministic)
+func (m *ConsumerGroupReadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConsumerGroupReadRequest.Marshal(b, m, deterministic)
 }
-func (m *ConsumerGroupRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConsumerGroupRequest.Merge(m, src)
+func (m *ConsumerGroupReadRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConsumerGroupReadRequest.Merge(m, src)
 }
-func (m *ConsumerGroupRequest) XXX_Size() int {
-	return xxx_messageInfo_ConsumerGroupRequest.Size(m)
+func (m *ConsumerGroupReadRequest) XXX_Size() int {
+	return xxx_messageInfo_ConsumerGroupReadRequest.Size(m)
 }
-func (m *ConsumerGroupRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConsumerGroupRequest.DiscardUnknown(m)
+func (m *ConsumerGroupReadRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConsumerGroupReadRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ConsumerGroupRequest proto.InternalMessageInfo
+var xxx_messageInfo_ConsumerGroupReadRequest proto.InternalMessageInfo
 
-func (m *ConsumerGroupRequest) GetConsumerGroupName() string {
+func (m *ConsumerGroupReadRequest) GetConsumerGroupName() string {
 	if m != nil {
 		return m.ConsumerGroupName
 	}
 	return ""
 }
 
-type ConsumerGroupResponse struct {
-	ErrorCode            string   `protobuf:"bytes,1,opt,name=ErrorCode,proto3" json:"ErrorCode,omitempty"`
+func (m *ConsumerGroupReadRequest) GetQueueName() string {
+	if m != nil {
+		return m.QueueName
+	}
+	return ""
+}
+
+type ConsumerGroupReadResponse struct {
+	Message              string   `protobuf:"bytes,1,opt,name=Message,proto3" json:"Message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ConsumerGroupResponse) Reset()         { *m = ConsumerGroupResponse{} }
-func (m *ConsumerGroupResponse) String() string { return proto.CompactTextString(m) }
-func (*ConsumerGroupResponse) ProtoMessage()    {}
-func (*ConsumerGroupResponse) Descriptor() ([]byte, []int) {
+func (m *ConsumerGroupReadResponse) Reset()         { *m = ConsumerGroupReadResponse{} }
+func (m *ConsumerGroupReadResponse) String() string { return proto.CompactTextString(m) }
+func (*ConsumerGroupReadResponse) ProtoMessage()    {}
+func (*ConsumerGroupReadResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_9e92dd3678396abb, []int{3}
 }
 
-func (m *ConsumerGroupResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ConsumerGroupResponse.Unmarshal(m, b)
+func (m *ConsumerGroupReadResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConsumerGroupReadResponse.Unmarshal(m, b)
 }
-func (m *ConsumerGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ConsumerGroupResponse.Marshal(b, m, deterministic)
+func (m *ConsumerGroupReadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConsumerGroupReadResponse.Marshal(b, m, deterministic)
 }
-func (m *ConsumerGroupResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConsumerGroupResponse.Merge(m, src)
+func (m *ConsumerGroupReadResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConsumerGroupReadResponse.Merge(m, src)
 }
-func (m *ConsumerGroupResponse) XXX_Size() int {
-	return xxx_messageInfo_ConsumerGroupResponse.Size(m)
+func (m *ConsumerGroupReadResponse) XXX_Size() int {
+	return xxx_messageInfo_ConsumerGroupReadResponse.Size(m)
 }
-func (m *ConsumerGroupResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConsumerGroupResponse.DiscardUnknown(m)
+func (m *ConsumerGroupReadResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConsumerGroupReadResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ConsumerGroupResponse proto.InternalMessageInfo
+var xxx_messageInfo_ConsumerGroupReadResponse proto.InternalMessageInfo
 
-func (m *ConsumerGroupResponse) GetErrorCode() string {
+func (m *ConsumerGroupReadResponse) GetMessage() string {
 	if m != nil {
-		return m.ErrorCode
+		return m.Message
 	}
 	return ""
 }
@@ -183,28 +191,27 @@ func (m *ConsumerGroupResponse) GetErrorCode() string {
 func init() {
 	proto.RegisterType((*ConsumerReadRequest)(nil), "ConsumerReadRequest")
 	proto.RegisterType((*ConsumerReadResponse)(nil), "ConsumerReadResponse")
-	proto.RegisterType((*ConsumerGroupRequest)(nil), "ConsumerGroupRequest")
-	proto.RegisterType((*ConsumerGroupResponse)(nil), "ConsumerGroupResponse")
+	proto.RegisterType((*ConsumerGroupReadRequest)(nil), "ConsumerGroupReadRequest")
+	proto.RegisterType((*ConsumerGroupReadResponse)(nil), "ConsumerGroupReadResponse")
 }
 
 func init() { proto.RegisterFile("protos/consumer/consumer.proto", fileDescriptor_9e92dd3678396abb) }
 
 var fileDescriptor_9e92dd3678396abb = []byte{
-	// 216 bytes of a gzipped FileDescriptorProto
+	// 204 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2b, 0x28, 0xca, 0x2f,
 	0xc9, 0x2f, 0xd6, 0x4f, 0xce, 0xcf, 0x2b, 0x2e, 0xcd, 0x4d, 0x2d, 0x82, 0x33, 0xf4, 0xc0, 0x12,
 	0x4a, 0xc6, 0x5c, 0xc2, 0xce, 0x50, 0x91, 0xa0, 0xd4, 0xc4, 0x94, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4,
 	0xe2, 0x12, 0x21, 0x19, 0x2e, 0xce, 0xc0, 0xd2, 0xd4, 0xd2, 0x54, 0xbf, 0xc4, 0xdc, 0x54, 0x09,
 	0x46, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x84, 0x80, 0x92, 0x01, 0x97, 0x08, 0xaa, 0xa6, 0xe2, 0x82,
 	0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x09, 0x2e, 0x76, 0xdf, 0xd4, 0xe2, 0xe2, 0xc4, 0x74, 0x98, 0x1e,
-	0x18, 0x57, 0xc9, 0x05, 0xa1, 0xc3, 0xbd, 0x28, 0xbf, 0xb4, 0x00, 0x66, 0x8f, 0x0e, 0x97, 0x20,
-	0x8a, 0x38, 0x92, 0x7d, 0x98, 0x12, 0x4a, 0xa6, 0x5c, 0xa2, 0x68, 0xa6, 0x40, 0x2d, 0x96, 0xe1,
-	0xe2, 0x74, 0x2d, 0x2a, 0xca, 0x2f, 0x72, 0xce, 0x4f, 0x81, 0x3b, 0x17, 0x2e, 0x60, 0x34, 0x91,
-	0x91, 0x8b, 0x1b, 0xa6, 0xcf, 0x31, 0xc0, 0x53, 0xc8, 0x86, 0x8b, 0x1b, 0xe4, 0x6c, 0xa8, 0xdb,
-	0x84, 0x44, 0xf4, 0xb0, 0x84, 0x80, 0x94, 0xa8, 0x1e, 0x36, 0x2f, 0x1a, 0x30, 0x0a, 0xb9, 0x70,
-	0x09, 0x3b, 0x17, 0xa5, 0x26, 0x96, 0xa4, 0xa2, 0x38, 0x45, 0x08, 0xa1, 0x1e, 0xd9, 0x83, 0x52,
-	0x62, 0x7a, 0x58, 0x5d, 0x9c, 0xc4, 0x06, 0x0e, 0x7e, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0x2f, 0x6b, 0x19, 0x43, 0xa0, 0x01, 0x00, 0x00,
+	0x18, 0x57, 0x29, 0x8d, 0x4b, 0x02, 0xa6, 0xc3, 0xbd, 0x28, 0xbf, 0xb4, 0x00, 0xd9, 0x2e, 0x1d,
+	0x2e, 0x41, 0x14, 0x39, 0x24, 0x3b, 0x31, 0x25, 0x50, 0x5d, 0xc6, 0x84, 0xee, 0x32, 0x53, 0x2e,
+	0x49, 0x2c, 0xf6, 0x10, 0x72, 0x9e, 0xd1, 0x0c, 0x46, 0x2e, 0x6e, 0x98, 0x3e, 0xc7, 0x00, 0x4f,
+	0x21, 0x1b, 0x2e, 0x6e, 0x90, 0x4e, 0xa8, 0xb4, 0x90, 0x88, 0x1e, 0x96, 0x30, 0x92, 0x12, 0xd5,
+	0xc3, 0x16, 0x08, 0x06, 0x8c, 0x42, 0xde, 0x5c, 0x02, 0x70, 0xcb, 0x61, 0x46, 0x48, 0xea, 0xe1,
+	0xf2, 0xbf, 0x94, 0x94, 0x1e, 0x4e, 0x27, 0x1b, 0x30, 0x26, 0xb1, 0x81, 0xe3, 0xc9, 0x18, 0x10,
+	0x00, 0x00, 0xff, 0xff, 0xae, 0x47, 0xb2, 0x9b, 0xc9, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -220,7 +227,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ConsumerAPIClient interface {
 	ReadMessage(ctx context.Context, in *ConsumerReadRequest, opts ...grpc.CallOption) (ConsumerAPI_ReadMessageClient, error)
-	CreateConsumerGroup(ctx context.Context, in *ConsumerGroupRequest, opts ...grpc.CallOption) (*ConsumerGroupResponse, error)
+	GroupReadMessage(ctx context.Context, in *ConsumerGroupReadRequest, opts ...grpc.CallOption) (ConsumerAPI_GroupReadMessageClient, error)
 }
 
 type consumerAPIClient struct {
@@ -263,19 +270,42 @@ func (x *consumerAPIReadMessageClient) Recv() (*ConsumerReadResponse, error) {
 	return m, nil
 }
 
-func (c *consumerAPIClient) CreateConsumerGroup(ctx context.Context, in *ConsumerGroupRequest, opts ...grpc.CallOption) (*ConsumerGroupResponse, error) {
-	out := new(ConsumerGroupResponse)
-	err := c.cc.Invoke(ctx, "/ConsumerAPI/CreateConsumerGroup", in, out, opts...)
+func (c *consumerAPIClient) GroupReadMessage(ctx context.Context, in *ConsumerGroupReadRequest, opts ...grpc.CallOption) (ConsumerAPI_GroupReadMessageClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_ConsumerAPI_serviceDesc.Streams[1], "/ConsumerAPI/GroupReadMessage", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &consumerAPIGroupReadMessageClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type ConsumerAPI_GroupReadMessageClient interface {
+	Recv() (*ConsumerGroupReadResponse, error)
+	grpc.ClientStream
+}
+
+type consumerAPIGroupReadMessageClient struct {
+	grpc.ClientStream
+}
+
+func (x *consumerAPIGroupReadMessageClient) Recv() (*ConsumerGroupReadResponse, error) {
+	m := new(ConsumerGroupReadResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // ConsumerAPIServer is the server API for ConsumerAPI service.
 type ConsumerAPIServer interface {
 	ReadMessage(*ConsumerReadRequest, ConsumerAPI_ReadMessageServer) error
-	CreateConsumerGroup(context.Context, *ConsumerGroupRequest) (*ConsumerGroupResponse, error)
+	GroupReadMessage(*ConsumerGroupReadRequest, ConsumerAPI_GroupReadMessageServer) error
 }
 
 // UnimplementedConsumerAPIServer can be embedded to have forward compatible implementations.
@@ -285,8 +315,8 @@ type UnimplementedConsumerAPIServer struct {
 func (*UnimplementedConsumerAPIServer) ReadMessage(req *ConsumerReadRequest, srv ConsumerAPI_ReadMessageServer) error {
 	return status.Errorf(codes.Unimplemented, "method ReadMessage not implemented")
 }
-func (*UnimplementedConsumerAPIServer) CreateConsumerGroup(ctx context.Context, req *ConsumerGroupRequest) (*ConsumerGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateConsumerGroup not implemented")
+func (*UnimplementedConsumerAPIServer) GroupReadMessage(req *ConsumerGroupReadRequest, srv ConsumerAPI_GroupReadMessageServer) error {
+	return status.Errorf(codes.Unimplemented, "method GroupReadMessage not implemented")
 }
 
 func RegisterConsumerAPIServer(s *grpc.Server, srv ConsumerAPIServer) {
@@ -314,37 +344,40 @@ func (x *consumerAPIReadMessageServer) Send(m *ConsumerReadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _ConsumerAPI_CreateConsumerGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConsumerGroupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
+func _ConsumerAPI_GroupReadMessage_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ConsumerGroupReadRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(ConsumerAPIServer).CreateConsumerGroup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ConsumerAPI/CreateConsumerGroup",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConsumerAPIServer).CreateConsumerGroup(ctx, req.(*ConsumerGroupRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(ConsumerAPIServer).GroupReadMessage(m, &consumerAPIGroupReadMessageServer{stream})
+}
+
+type ConsumerAPI_GroupReadMessageServer interface {
+	Send(*ConsumerGroupReadResponse) error
+	grpc.ServerStream
+}
+
+type consumerAPIGroupReadMessageServer struct {
+	grpc.ServerStream
+}
+
+func (x *consumerAPIGroupReadMessageServer) Send(m *ConsumerGroupReadResponse) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 var _ConsumerAPI_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "ConsumerAPI",
 	HandlerType: (*ConsumerAPIServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreateConsumerGroup",
-			Handler:    _ConsumerAPI_CreateConsumerGroup_Handler,
-		},
-	},
+	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "ReadMessage",
 			Handler:       _ConsumerAPI_ReadMessage_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GroupReadMessage",
+			Handler:       _ConsumerAPI_GroupReadMessage_Handler,
 			ServerStreams: true,
 		},
 	},

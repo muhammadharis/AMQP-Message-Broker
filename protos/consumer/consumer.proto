@@ -8,16 +8,17 @@ message ConsumerReadResponse {
     string Message = 1;
 }
 
-message ConsumerGroupRequest {
+message ConsumerGroupReadRequest {
     string ConsumerGroupName = 1;
+    string QueueName = 2;
 }
 
-message ConsumerGroupResponse {
-    string ErrorCode = 1;
+message ConsumerGroupReadResponse {
+    string Message = 1;
 }
 
 service ConsumerAPI {
     rpc ReadMessage (ConsumerReadRequest) returns (stream ConsumerReadResponse);
 
-    rpc CreateConsumerGroup(ConsumerGroupRequest) returns (ConsumerGroupResponse);
+    rpc GroupReadMessage(ConsumerGroupReadRequest) returns (stream ConsumerGroupReadResponse);
 }
