@@ -25,7 +25,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type ConsumerReadRequest struct {
-	QueueName            string   `protobuf:"bytes,1,opt,name=queueName,proto3" json:"queueName,omitempty"`
+	QueueName            string   `protobuf:"bytes,1,opt,name=QueueName,proto3" json:"QueueName,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -190,21 +190,21 @@ func init() {
 func init() { proto.RegisterFile("protos/consumer/consumer.proto", fileDescriptor_9e92dd3678396abb) }
 
 var fileDescriptor_9e92dd3678396abb = []byte{
-	// 220 bytes of a gzipped FileDescriptorProto
+	// 216 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2b, 0x28, 0xca, 0x2f,
 	0xc9, 0x2f, 0xd6, 0x4f, 0xce, 0xcf, 0x2b, 0x2e, 0xcd, 0x4d, 0x2d, 0x82, 0x33, 0xf4, 0xc0, 0x12,
 	0x4a, 0xc6, 0x5c, 0xc2, 0xce, 0x50, 0x91, 0xa0, 0xd4, 0xc4, 0x94, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4,
-	0xe2, 0x12, 0x21, 0x19, 0x2e, 0xce, 0xc2, 0xd2, 0xd4, 0xd2, 0x54, 0xbf, 0xc4, 0xdc, 0x54, 0x09,
+	0xe2, 0x12, 0x21, 0x19, 0x2e, 0xce, 0xc0, 0xd2, 0xd4, 0xd2, 0x54, 0xbf, 0xc4, 0xdc, 0x54, 0x09,
 	0x46, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x84, 0x80, 0x92, 0x01, 0x97, 0x08, 0xaa, 0xa6, 0xe2, 0x82,
 	0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x09, 0x2e, 0x76, 0xdf, 0xd4, 0xe2, 0xe2, 0xc4, 0x74, 0x98, 0x1e,
 	0x18, 0x57, 0xc9, 0x05, 0xa1, 0xc3, 0xbd, 0x28, 0xbf, 0xb4, 0x00, 0x66, 0x8f, 0x0e, 0x97, 0x20,
 	0x8a, 0x38, 0x92, 0x7d, 0x98, 0x12, 0x4a, 0xa6, 0x5c, 0xa2, 0x68, 0xa6, 0x40, 0x2d, 0x96, 0xe1,
-	0xe2, 0x74, 0x2d, 0x2a, 0xca, 0x2f, 0x72, 0xce, 0x4f, 0x81, 0x3b, 0x17, 0x2e, 0x60, 0xd4, 0xcf,
-	0xc8, 0xc5, 0x0d, 0xd3, 0xe7, 0x18, 0xe0, 0x29, 0x64, 0xc5, 0xc5, 0x19, 0x5c, 0x9a, 0x54, 0x9c,
-	0x5c, 0x94, 0x99, 0x94, 0x2a, 0x24, 0xa2, 0x87, 0xc5, 0xff, 0x52, 0xa2, 0x7a, 0xd8, 0x3c, 0x68,
-	0xc0, 0x28, 0xe4, 0xc2, 0x25, 0xec, 0x5c, 0x94, 0x9a, 0x58, 0x92, 0x8a, 0xe2, 0x10, 0x21, 0x84,
-	0x7a, 0x64, 0xef, 0x49, 0x89, 0xe9, 0x61, 0x75, 0x6f, 0x12, 0x1b, 0x38, 0xf0, 0x8d, 0x01, 0x01,
-	0x00, 0x00, 0xff, 0xff, 0x3a, 0x00, 0x76, 0x13, 0x9e, 0x01, 0x00, 0x00,
+	0xe2, 0x74, 0x2d, 0x2a, 0xca, 0x2f, 0x72, 0xce, 0x4f, 0x81, 0x3b, 0x17, 0x2e, 0x60, 0x34, 0x91,
+	0x91, 0x8b, 0x1b, 0xa6, 0xcf, 0x31, 0xc0, 0x53, 0xc8, 0x86, 0x8b, 0x1b, 0xe4, 0x6c, 0xa8, 0xdb,
+	0x84, 0x44, 0xf4, 0xb0, 0x84, 0x80, 0x94, 0xa8, 0x1e, 0x36, 0x2f, 0x1a, 0x30, 0x0a, 0xb9, 0x70,
+	0x09, 0x3b, 0x17, 0xa5, 0x26, 0x96, 0xa4, 0xa2, 0x38, 0x45, 0x08, 0xa1, 0x1e, 0xd9, 0x83, 0x52,
+	0x62, 0x7a, 0x58, 0x5d, 0x9c, 0xc4, 0x06, 0x0e, 0x7e, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff,
+	0x2f, 0x6b, 0x19, 0x43, 0xa0, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -219,7 +219,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ConsumerAPIClient interface {
-	Subscribe(ctx context.Context, in *ConsumerReadRequest, opts ...grpc.CallOption) (ConsumerAPI_SubscribeClient, error)
+	ReadMessage(ctx context.Context, in *ConsumerReadRequest, opts ...grpc.CallOption) (ConsumerAPI_ReadMessageClient, error)
 	CreateConsumerGroup(ctx context.Context, in *ConsumerGroupRequest, opts ...grpc.CallOption) (*ConsumerGroupResponse, error)
 }
 
@@ -231,12 +231,12 @@ func NewConsumerAPIClient(cc *grpc.ClientConn) ConsumerAPIClient {
 	return &consumerAPIClient{cc}
 }
 
-func (c *consumerAPIClient) Subscribe(ctx context.Context, in *ConsumerReadRequest, opts ...grpc.CallOption) (ConsumerAPI_SubscribeClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ConsumerAPI_serviceDesc.Streams[0], "/ConsumerAPI/Subscribe", opts...)
+func (c *consumerAPIClient) ReadMessage(ctx context.Context, in *ConsumerReadRequest, opts ...grpc.CallOption) (ConsumerAPI_ReadMessageClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_ConsumerAPI_serviceDesc.Streams[0], "/ConsumerAPI/ReadMessage", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &consumerAPISubscribeClient{stream}
+	x := &consumerAPIReadMessageClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -246,16 +246,16 @@ func (c *consumerAPIClient) Subscribe(ctx context.Context, in *ConsumerReadReque
 	return x, nil
 }
 
-type ConsumerAPI_SubscribeClient interface {
+type ConsumerAPI_ReadMessageClient interface {
 	Recv() (*ConsumerReadResponse, error)
 	grpc.ClientStream
 }
 
-type consumerAPISubscribeClient struct {
+type consumerAPIReadMessageClient struct {
 	grpc.ClientStream
 }
 
-func (x *consumerAPISubscribeClient) Recv() (*ConsumerReadResponse, error) {
+func (x *consumerAPIReadMessageClient) Recv() (*ConsumerReadResponse, error) {
 	m := new(ConsumerReadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -274,7 +274,7 @@ func (c *consumerAPIClient) CreateConsumerGroup(ctx context.Context, in *Consume
 
 // ConsumerAPIServer is the server API for ConsumerAPI service.
 type ConsumerAPIServer interface {
-	Subscribe(*ConsumerReadRequest, ConsumerAPI_SubscribeServer) error
+	ReadMessage(*ConsumerReadRequest, ConsumerAPI_ReadMessageServer) error
 	CreateConsumerGroup(context.Context, *ConsumerGroupRequest) (*ConsumerGroupResponse, error)
 }
 
@@ -282,8 +282,8 @@ type ConsumerAPIServer interface {
 type UnimplementedConsumerAPIServer struct {
 }
 
-func (*UnimplementedConsumerAPIServer) Subscribe(req *ConsumerReadRequest, srv ConsumerAPI_SubscribeServer) error {
-	return status.Errorf(codes.Unimplemented, "method Subscribe not implemented")
+func (*UnimplementedConsumerAPIServer) ReadMessage(req *ConsumerReadRequest, srv ConsumerAPI_ReadMessageServer) error {
+	return status.Errorf(codes.Unimplemented, "method ReadMessage not implemented")
 }
 func (*UnimplementedConsumerAPIServer) CreateConsumerGroup(ctx context.Context, req *ConsumerGroupRequest) (*ConsumerGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateConsumerGroup not implemented")
@@ -293,24 +293,24 @@ func RegisterConsumerAPIServer(s *grpc.Server, srv ConsumerAPIServer) {
 	s.RegisterService(&_ConsumerAPI_serviceDesc, srv)
 }
 
-func _ConsumerAPI_Subscribe_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _ConsumerAPI_ReadMessage_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ConsumerReadRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ConsumerAPIServer).Subscribe(m, &consumerAPISubscribeServer{stream})
+	return srv.(ConsumerAPIServer).ReadMessage(m, &consumerAPIReadMessageServer{stream})
 }
 
-type ConsumerAPI_SubscribeServer interface {
+type ConsumerAPI_ReadMessageServer interface {
 	Send(*ConsumerReadResponse) error
 	grpc.ServerStream
 }
 
-type consumerAPISubscribeServer struct {
+type consumerAPIReadMessageServer struct {
 	grpc.ServerStream
 }
 
-func (x *consumerAPISubscribeServer) Send(m *ConsumerReadResponse) error {
+func (x *consumerAPIReadMessageServer) Send(m *ConsumerReadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -343,8 +343,8 @@ var _ConsumerAPI_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "Subscribe",
-			Handler:       _ConsumerAPI_Subscribe_Handler,
+			StreamName:    "ReadMessage",
+			Handler:       _ConsumerAPI_ReadMessage_Handler,
 			ServerStreams: true,
 		},
 	},

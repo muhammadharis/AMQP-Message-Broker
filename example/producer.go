@@ -40,6 +40,7 @@ func FanoutMessage(message string) error {
 	produceRequest := &broker.ProduceRequest {
 		ExchangeName: "my_exchange",
 		QueueName: "my_queue",
+		MessageSet: [][]byte{[]byte("Hello, world!"), []byte("This is a message")},
 	}
 	client.ProduceMessage(context.Background(), produceRequest)
 	return nil

@@ -8,19 +8,19 @@ import (
 	consumer "github.com/muhammadharis/grpc/protos/consumer"
 )
 
-// Subscribe allows a consumer to consume a message from the queue
-func Subscribe(key string) error {
+// Read allows a consumer to consume a message from the queue
+func Read() error {
 	conn, err := CreateGrpcClientConnection("localhost:8080")
 	if err != nil {
 		return err
 	}
 	client := consumer.NewConsumerAPIClient(conn)
 
-	consumerRequest := &consumer.ConsumerRequest{
-		Key: key,
+	consumerRequest := &consumer.ConsumerReadRequest{
+		QueueName: "my_queue",
 	}
 	
-	stream, err := client.Subscribe(context.Background(), consumerRequest)
+	stream, err := client.ReadMessage(context.Background(), consumerRequest)
 	if err != nil {
 		return err
 	}

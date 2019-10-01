@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 message ConsumerReadRequest {
-    string queueName = 1;
+    string QueueName = 1;
 }
 
 message ConsumerReadResponse {
@@ -17,7 +17,7 @@ message ConsumerGroupResponse {
 }
 
 service ConsumerAPI {
-    rpc Subscribe (ConsumerReadRequest) returns (stream ConsumerReadResponse);
+    rpc ReadMessage (ConsumerReadRequest) returns (stream ConsumerReadResponse);
 
     rpc CreateConsumerGroup(ConsumerGroupRequest) returns (ConsumerGroupResponse);
 }

@@ -1,21 +1,23 @@
 package consumer
 
 import (
+	"context"
 	//"strconv"
 	consumer "github.com/muhammadharis/grpc/protos/consumer"
 	redis "github.com/go-redis/redis"
 	helpers "github.com/muhammadharis/grpc/services/helpers"
 )
 
+// ConsumerImpl implements the server code for the Consumer proto
 type ConsumerImpl struct {}
 
-// Subscribe allows producers to subscribe to messages
-func (*ConsumerImpl) Subscribe(request *consumer.ConsumerRequest, stream consumer.ConsumerAPI_SubscribeServer) error {
-	key := request.Key
+// ReadMessage allows sole consumers to read messages in a blocking fashion
+func (*ConsumerImpl) ReadMessage(request *consumer.ConsumerReadRequest, stream consumer.ConsumerAPI_ReadMessageServer) error {
+	queueName := request.QueueName
 	client := helpers.CreateRedisClient("localhost:6379", "", 0) //No password, default DB
 
 	xReadArguments := &redis.XReadArgs {
-		Streams: []string{key, "$"},
+		Streams: []string{helpers.StreamNamespace+queueName, "$"},
 		Block: 0,
 	}
 	
@@ -31,7 +33,7 @@ func (*ConsumerImpl) Subscribe(request *consumer.ConsumerRequest, stream consume
 			for _, v := range xMessage.Values { // Get the values from the message
 				s, ok := v.(string)
 				if ok {
-					stream.Send(&consumer.ConsumerResponse{Message: s})
+					stream.Send(&consumer.ConsumerReadResponse{Message: s})
 				}
 			}
 			
@@ -39,4 +41,8 @@ func (*ConsumerImpl) Subscribe(request *consumer.ConsumerRequest, stream consume
 	}
 
 	return nil
+}
+
+func (*ConsumerImpl) CreateConsumerGroup(ctx context.Context, request *consumer.ConsumerGroupRequest) (*consumer.ConsumerGroupResponse, error) {
+	return nil, nil
 }

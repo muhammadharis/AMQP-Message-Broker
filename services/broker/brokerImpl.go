@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"context"
 	"errors"
+	"strconv"
 	"strings"
 	broker "github.com/muhammadharis/grpc/protos/broker"
 	redis "github.com/go-redis/redis"
@@ -13,9 +14,6 @@ import (
 
 const (
 	partitionLimit = 10
-	exchangeNamespace = "_EXCHANGE_"
-	queueNamespace = "_QUEUE_"
-	streamNamespace = "_STREAM_"
 )
 
 // BrokerImpl implements the server code for the Broker proto
@@ -31,7 +29,7 @@ func (*BrokerImpl) CreateExchange(ctx context.Context, request *broker.CreateExc
 
 	client := helpers.CreateRedisClient("localhost:6379", "", 0)
 
-	exists, err := client.Exists(exchangeNamespace+exchangeName).Result()
+	exists, err := client.Exists(helpers.ExchangeNamespace+exchangeName).Result()
 	if err != nil {
 		panic(err)
 		return nil, err
@@ -43,7 +41,7 @@ func (*BrokerImpl) CreateExchange(ctx context.Context, request *broker.CreateExc
 
 	// Create a key that maps the exchange name to its binded queues
 	// Add the type of the exchange into the map with the hash "TYPE"
-	boolCmd := client.HSet(exchangeNamespace+exchangeName, "TYPE", exchangeType)
+	boolCmd := client.HSet(helpers.ExchangeNamespace+exchangeName, "TYPE", exchangeType)
 	if boolCmd.Err() != nil {
 		panic(boolCmd.Err())
 		return nil, boolCmd.Err()
@@ -58,7 +56,7 @@ func (*BrokerImpl) CreateQueue(ctx context.Context, request *broker.CreateQueueR
 
 	client := helpers.CreateRedisClient("localhost:6379", "", 0)
 
-	exists, err := client.Exists(queueNamespace+queueName).Result()
+	exists, err := client.Exists(helpers.QueueNamespace+queueName).Result()
 	if err != nil {
 		panic(err)
 		return nil, err
@@ -70,7 +68,7 @@ func (*BrokerImpl) CreateQueue(ctx context.Context, request *broker.CreateQueueR
 
 	// Create a key that maps the queue name to its binded exchanges
 	// The default exchange named DEFAULT is binded to all queues
-	boolCmd := client.HSet(queueNamespace+queueName, "DEFAULT", true)
+	boolCmd := client.HSet(helpers.QueueNamespace+queueName, "DEFAULT", true)
 	if boolCmd.Err() != nil {
 		panic(boolCmd.Err())
 		return nil, boolCmd.Err()
@@ -87,11 +85,11 @@ func (*BrokerImpl) BindQueue(ctx context.Context, request *broker.BindQueueReque
 	client := helpers.CreateRedisClient("localhost:6379", "", 0)
 
 	// Add the specified queue to the set of queues held by the specified exchange, and vice versa
-	cmd := client.HSet(exchangeNamespace+exchangeName, queueName, true)
+	cmd := client.HSet(helpers.ExchangeNamespace+exchangeName, queueName, true)
 	if cmd.Err() != nil {
 		return nil, cmd.Err()
 	}
-	cmd = client.HSet(queueNamespace+queueName, exchangeName, true)
+	cmd = client.HSet(helpers.QueueNamespace+queueName, exchangeName, true)
 	if cmd.Err() != nil {
 		return nil, cmd.Err()
 	}
@@ -99,13 +97,13 @@ func (*BrokerImpl) BindQueue(ctx context.Context, request *broker.BindQueueReque
 	return &broker.BindQueueResponse{}, nil
 }
 
-// Produce consumes a producer's message
+// ProduceMessage sends a message to the correct queue and exchange
 func (*BrokerImpl) ProduceMessage(ctx context.Context, request *broker.ProduceRequest) (*broker.ProduceResponse, error) {
 	exchangeName := request.ExchangeName
 
 	client := helpers.CreateRedisClient("localhost:6379", "", 0) //No password, default DB
 
-	exchangeType, err := client.HGet(exchangeNamespace+exchangeName, "TYPE").Result() //Gets the type of the exchange
+	exchangeType, err := client.HGet(helpers.ExchangeNamespace+exchangeName, "TYPE").Result() //Gets the type of the exchange
 	if err != nil {
 		panic(err)
 		return nil, err
@@ -119,19 +117,6 @@ func (*BrokerImpl) ProduceMessage(ctx context.Context, request *broker.ProduceRe
 		case "DIRECT":
 			err = produceDirectHelper(client, request)
 	}
-/*
-	xAddArgument := &redis.XAddArgs{
-		Stream: streamName,
-		MaxLen: partitionLimit,
-		MaxLenApprox: partitionLimit,
-		ID: "*",
-		Values: map[string]interface{} {
-			"0": request.MessageSet,
-		},
-	}
-	cmd := client.XAdd(xAddArgument)
-	fmt.Println(cmd.String())
-*/
 	resp := &broker.ProduceResponse{}
 	return resp, nil
 }
@@ -142,14 +127,16 @@ func produceFanoutHelper(client *redis.Client, request *broker.ProduceRequest) e
 
 func produceDirectHelper(client *redis.Client, request *broker.ProduceRequest) error {
 	queueName := request.QueueName
+	valuesMap := make(map[string]interface{})
+	for i, msg := range request.MessageSet {
+		valuesMap[strconv.Itoa(i)] = msg
+	}
 	xAddArgument := &redis.XAddArgs{
-		Stream: streamNamespace+queueName,
+		Stream: helpers.StreamNamespace+queueName,
 		MaxLen: partitionLimit,
 		MaxLenApprox: partitionLimit,
 		ID: "*",
-		Values: map[string]interface{} {
-			"0": request.MessageSet,
-		},
+		Values: valuesMap,
 	}
 	cmd := client.XAdd(xAddArgument)
 	fmt.Println(cmd.String())

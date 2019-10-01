@@ -30,7 +30,7 @@ message CreateQueueResponse {
 message ProduceRequest {
   string ExchangeName = 1;
   string QueueName = 2;
-  bytes MessageSet = 3;
+  repeated bytes MessageSet = 3;
 }
 
 message ProduceResponse {
