@@ -108,8 +108,7 @@ func (*BrokerImpl) ProduceMessage(ctx context.Context, request *broker.ProduceRe
 		panic(err)
 		return nil, err
 	}
-	exchangeType = strings.ToUpper(exchangeType)
-	fmt.Println(exchangeType)
+	exchangeType = strings.ToUpper(exchangeType)	
 	
 	switch exchangeType {
 		case "FANOUT":
@@ -122,23 +121,54 @@ func (*BrokerImpl) ProduceMessage(ctx context.Context, request *broker.ProduceRe
 }
 
 func produceFanoutHelper(client *redis.Client, request *broker.ProduceRequest) error {
+	exchangeName := request.ExchangeName
+	count := 0
+
+	// Construct the map of values to be sent to the queue
+	valuesMap := make(map[string]interface{})
+	for i, msg := range request.MessageSet {
+		valuesMap[strconv.Itoa(i)] = msg
+	}
+
+	// Message all the queues that are held in the set mapped to by the exchange (except for the first),
+	// since that is just TYPE:FANOUT
+	for it := client.HScan(helpers.ExchangeNamespace+exchangeName, 0, "*", 0).Iterator(); it.Next(); {
+		if count % 2 == 0 && count >= 2 { //Skip every other, we are interested in keys only
+			xAddArgument := getXArguments(it.Val(), &valuesMap)
+			cmd := client.XAdd(xAddArgument)
+			if cmd.Err() != nil{
+				return cmd.Err()
+			}
+		}
+		count++
+	}
+	
 	return nil
 }
 
 func produceDirectHelper(client *redis.Client, request *broker.ProduceRequest) error {
 	queueName := request.QueueName
+	
+	// Construct the map of values to be sent to the queue
 	valuesMap := make(map[string]interface{})
 	for i, msg := range request.MessageSet {
 		valuesMap[strconv.Itoa(i)] = msg
 	}
-	xAddArgument := &redis.XAddArgs{
+	xAddArgument := getXArguments(queueName, &valuesMap)
+	cmd := client.XAdd(xAddArgument)
+	if cmd.Err() != nil{
+		return cmd.Err()
+	}
+	fmt.Println(cmd.String())
+	return nil
+}
+
+func getXArguments(queueName string, valuesMap *map[string]interface{}) (*redis.XAddArgs){
+	return &redis.XAddArgs{
 		Stream: helpers.StreamNamespace+queueName,
 		MaxLen: partitionLimit,
 		MaxLenApprox: partitionLimit,
 		ID: "*",
-		Values: valuesMap,
+		Values: *valuesMap,
 	}
-	cmd := client.XAdd(xAddArgument)
-	fmt.Println(cmd.String())
-	return nil
 }

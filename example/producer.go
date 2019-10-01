@@ -6,8 +6,8 @@ import (
 	broker "github.com/muhammadharis/grpc/protos/broker"
 )
 
-// FanoutMessage allows a producer to produce a fanout message to the broker
-func FanoutMessage(message string) error {
+// Message allows a producer to produce a fanout message to the broker
+func Message() error {
 	conn, err := CreateGrpcClientConnection("localhost:8080")
 	if err != nil {
 		return err
@@ -19,7 +19,7 @@ func FanoutMessage(message string) error {
 	// Create a new exchange
 	createExchangeRequest := &broker.CreateExchangeRequest {
 		ExchangeName : "my_exchange",
-  		Type: "direct",
+  		Type: "fanout",
 	}
 	client.CreateExchange(context.Background(), createExchangeRequest)
 
