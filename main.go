@@ -5,9 +5,9 @@ import (
 	"net"
 	//"time"
 
-	broker "github.com/muhammadharis/grpc/protos/broker"
-	brokerImpl "github.com/muhammadharis/grpc/services/broker"
-	consumerImpl "github.com/muhammadharis/grpc/services/consumer"
+	broker "github.com/muhammadharis/AMQP-Message-Broker/protos/broker"
+	brokerImpl "github.com/muhammadharis/AMQP-Message-Broker/services/broker"
+	consumerImpl "github.com/muhammadharis/AMQP-Message-Broker/services/consumer"
 	//redis "github.com/go-redis/redis"
 
 	"google.golang.org/grpc"

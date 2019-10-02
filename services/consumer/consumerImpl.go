@@ -3,9 +3,9 @@ package consumer
 import (
 	//"strconv"
 	"context"
-	broker "github.com/muhammadharis/grpc/protos/broker"
+	broker "github.com/muhammadharis/AMQP-Message-Broker/protos/broker"
 	redis "github.com/go-redis/redis"
-	helpers "github.com/muhammadharis/grpc/services/helpers"
+	helpers "github.com/muhammadharis/AMQP-Message-Broker/services/helpers"
 )
 
 // ConsumerImpl implements the server code for the Consumer proto

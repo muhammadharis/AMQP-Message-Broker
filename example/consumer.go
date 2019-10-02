@@ -5,7 +5,7 @@ import (
 	"context"
 	"io"
 
-	broker "github.com/muhammadharis/grpc/protos/broker"
+	broker "github.com/muhammadharis/AMQP-Message-Broker/protos/broker"
 )
 
 // Read allows a consumer to consume a message from the queue

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	broker "github.com/muhammadharis/grpc/protos/broker"
+	broker "github.com/muhammadharis/AMQP-Message-Broker/protos/broker"
 	"google.golang.org/grpc"
 )
 
