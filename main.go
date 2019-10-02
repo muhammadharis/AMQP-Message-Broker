@@ -6,7 +6,6 @@ import (
 	//"time"
 
 	broker "github.com/muhammadharis/grpc/protos/broker"
-	consumer "github.com/muhammadharis/grpc/protos/consumer"
 	brokerImpl "github.com/muhammadharis/grpc/services/broker"
 	consumerImpl "github.com/muhammadharis/grpc/services/consumer"
 	//redis "github.com/go-redis/redis"
@@ -17,7 +16,7 @@ import (
 func main() {
 	server := grpc.NewServer()
 	broker.RegisterProduceAPIServer(server, &brokerImpl.BrokerImpl{})
-	consumer.RegisterConsumerAPIServer(server, &consumerImpl.ConsumerImpl{})
+	broker.RegisterConsumerAPIServer(server, &consumerImpl.ConsumerImpl{})
 	listener, err := net.Listen("tcp", ":8080")
 	if err != nil {
 		panic(err)

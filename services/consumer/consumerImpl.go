@@ -3,7 +3,7 @@ package consumer
 import (
 	//"strconv"
 	"context"
-	consumer "github.com/muhammadharis/grpc/protos/consumer"
+	broker "github.com/muhammadharis/grpc/protos/broker"
 	redis "github.com/go-redis/redis"
 	helpers "github.com/muhammadharis/grpc/services/helpers"
 )
@@ -12,7 +12,7 @@ import (
 type ConsumerImpl struct {}
 
 // ReadMessage allows sole consumers to read messages in a blocking fashion
-func (*ConsumerImpl) ReadMessage(request *consumer.ConsumerReadRequest, stream consumer.ConsumerAPI_ReadMessageServer) error {
+func (*ConsumerImpl) ReadMessage(request *broker.ConsumerReadRequest, stream broker.ConsumerAPI_ReadMessageServer) error {
 	queueName := request.QueueName
 	client := helpers.CreateRedisClient("", 0) //No password, default DB
 
@@ -33,7 +33,7 @@ func (*ConsumerImpl) ReadMessage(request *consumer.ConsumerReadRequest, stream c
 			for _, v := range xMessage.Values { // Get the values from the message
 				s, ok := v.(string)
 				if ok {
-					stream.Send(&consumer.ConsumerReadResponse{Message: s})
+					stream.Send(&broker.ConsumerReadResponse{Message: s})
 				}
 			}
 			
@@ -44,7 +44,7 @@ func (*ConsumerImpl) ReadMessage(request *consumer.ConsumerReadRequest, stream c
 }
 
 // GroupReadMessage allows consumer groups read messages in a blocking fashion
-func (*ConsumerImpl) GroupReadMessage(request *consumer.ConsumerGroupReadRequest, stream consumer.ConsumerAPI_GroupReadMessageServer) error {
+func (*ConsumerImpl) GroupReadMessage(request *broker.ConsumerGroupReadRequest, stream broker.ConsumerAPI_GroupReadMessageServer) error {
 	consumerGroupName := request.ConsumerGroupName
 	consumerName := request.ConsumerName
 	queueName := request.QueueName
@@ -69,7 +69,7 @@ func (*ConsumerImpl) GroupReadMessage(request *consumer.ConsumerGroupReadRequest
 			for _, v := range xMessage.Values { // Get the values from the message
 				s, ok := v.(string)
 				if ok {
-					stream.Send(&consumer.ConsumerGroupReadResponse{Message: s})
+					stream.Send(&broker.ConsumerGroupReadResponse{Message: s})
 				}
 			}
 			
@@ -79,12 +79,12 @@ func (*ConsumerImpl) GroupReadMessage(request *consumer.ConsumerGroupReadRequest
 }
 
 // CreateConsumerGroup creates a new consumer group on the server
-func (*ConsumerImpl) CreateConsumerGroup(ctx context.Context, request *consumer.CreateConsumerGroupRequest) (*consumer.CreateConsumerGroupResponse, error) {
+func (*ConsumerImpl) CreateConsumerGroup(ctx context.Context, request *broker.CreateConsumerGroupRequest) (*broker.CreateConsumerGroupResponse, error) {
 	groupName := request.GroupName
 	queueName := request.QueueName
 	client := helpers.CreateRedisClient("", 0) //No password, default DB
 
 	client.XGroupCreate(helpers.StreamNamespace+queueName, groupName, "$")
 
-	return &consumer.CreateConsumerGroupResponse{}, nil
+	return &broker.CreateConsumerGroupResponse{}, nil
 }

@@ -5,7 +5,7 @@ import (
 	"context"
 	"io"
 
-	consumer "github.com/muhammadharis/grpc/protos/consumer"
+	broker "github.com/muhammadharis/grpc/protos/broker"
 )
 
 // Read allows a consumer to consume a message from the queue
@@ -14,9 +14,9 @@ func Read() error {
 	if err != nil {
 		return err
 	}
-	client := consumer.NewConsumerAPIClient(conn)
+	client := broker.NewConsumerAPIClient(conn)
 
-	consumerRequest := &consumer.ConsumerReadRequest{
+	consumerRequest := &broker.ConsumerReadRequest{
 		QueueName: "my_queue",
 	}
 	
