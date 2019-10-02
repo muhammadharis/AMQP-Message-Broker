@@ -1,6 +1,6 @@
 CXX = go build
 EXEC = main
-OBJECTS = main.go producer.go helpers.go
+OBJECTS = main.go producer.go consumer.go helpers.go
 
 ${EXEC}: ${OBJECTS}
 	${CXX} ${OBJECTS}
