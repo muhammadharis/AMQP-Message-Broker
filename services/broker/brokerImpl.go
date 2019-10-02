@@ -27,7 +27,7 @@ func (*BrokerImpl) CreateExchange(ctx context.Context, request *broker.CreateExc
 		exchangeType = "FANOUT"
 	}
 
-	client := helpers.CreateRedisClient("localhost:6379", "", 0)
+	client := helpers.CreateRedisClient("", 0)
 
 	exists, err := client.Exists(helpers.ExchangeNamespace+exchangeName).Result()
 	if err != nil {
@@ -54,7 +54,7 @@ func (*BrokerImpl) CreateExchange(ctx context.Context, request *broker.CreateExc
 func (*BrokerImpl) CreateQueue(ctx context.Context, request *broker.CreateQueueRequest) (*broker.CreateQueueResponse, error) {
 	queueName := request.QueueName
 
-	client := helpers.CreateRedisClient("localhost:6379", "", 0)
+	client := helpers.CreateRedisClient("", 0)
 
 	exists, err := client.Exists(helpers.QueueNamespace+queueName).Result()
 	if err != nil {
@@ -82,7 +82,7 @@ func (*BrokerImpl) BindQueue(ctx context.Context, request *broker.BindQueueReque
 	exchangeName := request.ExchangeName
 	queueName := request.QueueName
 	
-	client := helpers.CreateRedisClient("localhost:6379", "", 0)
+	client := helpers.CreateRedisClient("", 0)
 
 	// Add the specified queue to the set of queues held by the specified exchange, and vice versa
 	cmd := client.HSet(helpers.ExchangeNamespace+exchangeName, queueName, true)
@@ -101,7 +101,7 @@ func (*BrokerImpl) BindQueue(ctx context.Context, request *broker.BindQueueReque
 func (*BrokerImpl) ProduceMessage(ctx context.Context, request *broker.ProduceRequest) (*broker.ProduceResponse, error) {
 	exchangeName := request.ExchangeName
 
-	client := helpers.CreateRedisClient("localhost:6379", "", 0) //No password, default DB
+	client := helpers.CreateRedisClient("", 0) //No password, default DB
 
 	exchangeType, err := client.HGet(helpers.ExchangeNamespace+exchangeName, "TYPE").Result() //Gets the type of the exchange
 	if err != nil {

@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"os"
 	"github.com/go-redis/redis"
 )
 
@@ -11,7 +12,11 @@ const (
 )
 
 // CreateRedisClient creates and returns a Redis client with given information
-func CreateRedisClient(addr string, password string, db int) (*redis.Client){
+func CreateRedisClient(password string, db int) (*redis.Client){
+	addr := "localhost:6379" //Default host and port
+	if os.Getenv("REDIS_HOST") != "" && os.Getenv("REDIS_PORT") != "" {
+		addr = os.Getenv("REDIS_HOST")+":"+os.Getenv("REDIS_PORT")
+	}
 	client := redis.NewClient(&redis.Options{
 		Addr:     addr,
 		Password: password,

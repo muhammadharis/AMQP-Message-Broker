@@ -10,15 +10,24 @@ message ConsumerReadResponse {
 
 message ConsumerGroupReadRequest {
     string ConsumerGroupName = 1;
-    string QueueName = 2;
+    string ConsumerName = 2;
+    string QueueName = 3;
 }
 
 message ConsumerGroupReadResponse {
     string Message = 1;
 }
 
+message CreateConsumerGroupRequest {
+    string GroupName = 1;
+    string QueueName = 2;
+}
+
+message CreateConsumerGroupResponse {
+}
+
 service ConsumerAPI {
     rpc ReadMessage (ConsumerReadRequest) returns (stream ConsumerReadResponse);
-
+    rpc CreateConsumerGroup(CreateConsumerGroupRequest) returns (CreateConsumerGroupResponse);
     rpc GroupReadMessage(ConsumerGroupReadRequest) returns (stream ConsumerGroupReadResponse);
 }
