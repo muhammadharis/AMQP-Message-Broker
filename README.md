@@ -35,6 +35,9 @@ in the other terminal.
 #### Step 4:
 You will notice that the `subscribe` will wait until the message is published, and then print. The client code can be modified for any use case.
 
+#### Demo
+![Broker Demo](https://user-images.githubusercontent.com/13709152/66133635-fd727c00-e5c4-11e9-92ea-46f62d348b0f.gif)
+
 # Containerization
 ### Build the image:
 docker build -t muhammadharis/amqp-message-broker .
