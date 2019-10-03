@@ -16,7 +16,7 @@ docker build -t muhammadharis/amqp-message-broker .
 docker build -t muhammadharis/amqp-message-broker .
 ```
 
-### Run the image:
+### Run a container from the image:
 ```bash
 docker run -d --name messagebrokerapp muhammadharis/amqp-message-broker
 ```
