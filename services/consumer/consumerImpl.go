@@ -1,7 +1,6 @@
 package consumer
 
 import (
-	//"strconv"
 	"context"
 	broker "github.com/muhammadharis/AMQP-Message-Broker/protos/broker"
 	redis "github.com/go-redis/redis"
