@@ -1,5 +1,5 @@
 CXX = go build
-EXEC = main
+EXEC = example
 OBJECTS = main.go producer.go consumer.go helpers.go
 
 ${EXEC}: ${OBJECTS}
