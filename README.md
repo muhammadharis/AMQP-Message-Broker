@@ -4,13 +4,13 @@ This is my implementation of an AMQP Message Broker done in Go using gRPC. The p
 
 [broker.proto](/protos/broker/broker.proto) describes the two services (`ProduceAPI` and `ConsumerAPI`), alongside any necessary information needed to create requests.
 
-[The example folder](/example/) contains examples for what the client-implementation of Producer or Consumer might look like.
-
 The idea for this messaging service is similar to that of RabbitMQ. In this implementation, there are 2 types of exchanges: **Fanout** and **Direct**. The basic architecture is shown.
 ![AMQP Architecture](https://callistaenterprise.se/assets/blogg/goblog/part9-rabbitmq-exchange.png)
 
 # Running an Example
-Have three separate terminal instances. 
+As a proof of concept, I've included an example use-case in [The example folder](/example/) for what the client-implementation of Producer or Consumer might look like. The following are the steps to run this example.
+Have three separate terminal instances open, and Redis running.
+
 #### Step 1:
 Flush the Redis cache by running `flushall` in the Redis CLI
 
