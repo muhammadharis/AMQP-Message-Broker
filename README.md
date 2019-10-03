@@ -9,7 +9,8 @@ The idea for this messaging service is similar to that of RabbitMQ. In this impl
 
 # Running an Example
 As a proof of concept, I've included an example use-case in [The example folder](/example/) for what the client-implementation of Producer or Consumer might look like. The following are the steps to run this example.
-Have three separate terminal instances open, and Redis running.
+
+Have three separate terminal instances open, and Redis running on the default address localhost:6379, or on a custom address by specifying the `REDIS_HOST` and `REDIS_PORT` environment variables.
 
 #### Step 1:
 Flush the Redis cache by running `flushall` in the Redis CLI
