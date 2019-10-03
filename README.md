@@ -20,3 +20,27 @@ docker build -t muhammadharis/amqp-message-broker .
 ```bash
 docker run -d --name messagebrokerapp muhammadharis/amqp-message-broker
 ```
+
+# Running an Example
+Have three separate terminal instances. 
+#### Step 1
+Flush the Redis cache by running `flushall` in the Redis CLI
+#### Step 2
+In the first terminal, start the server, by running
+```bash
+go run main.go
+``` 
+in the root directory.
+#### Step 3
+In the [example directory](/example/), run `make`. An executable named `example` will be generated. To test the service, run
+```bash
+./example subscribe
+```
+in one terminal, and 
+```bash
+./example publish
+```
+in the other terminal. 
+
+#### Step 4
+You will notice that the `subscribe` will wait until the message is published, and then print. The client code can be modified for any use case.
