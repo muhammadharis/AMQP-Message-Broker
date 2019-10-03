@@ -9,18 +9,6 @@ This is my implementation of an AMQP Message Broker done in Go using gRPC. The p
 The idea for this messaging service is similar to that of RabbitMQ. In this implementation, there are 2 types of exchanges: **Fanout** and **Direct**. The basic architecture is shown.
 ![AMQP Architecture](https://callistaenterprise.se/assets/blogg/goblog/part9-rabbitmq-exchange.png)
 
-# Containerization
-### Build the image:
-docker build -t muhammadharis/amqp-message-broker .
-```bash
-docker build -t muhammadharis/amqp-message-broker .
-```
-
-### Run a container from the image:
-```bash
-docker run -d --name messagebrokerapp muhammadharis/amqp-message-broker
-```
-
 # Running an Example
 Have three separate terminal instances. 
 #### Step 1:
@@ -46,3 +34,15 @@ in the other terminal.
 
 #### Step 4:
 You will notice that the `subscribe` will wait until the message is published, and then print. The client code can be modified for any use case.
+
+# Containerization
+### Build the image:
+docker build -t muhammadharis/amqp-message-broker .
+```bash
+docker build -t muhammadharis/amqp-message-broker .
+```
+
+### Run a container from the image:
+```bash
+docker run -d --name messagebrokerapp muhammadharis/amqp-message-broker
+```
